@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fadex — Rutinas semanales de calentamiento, estiramientos y dieta para fútbol, gimnasio, natación, tenis, baloncesto, karate y boxeo. Planes por edades de 10 a 70 años.">
+  <title>Fadex — Rutinas & Dieta por Deporte y Edad</title>
+  <style>
+    /* ============================================================
+       Fadex — Dark glassmorphism + warm gradient accents
+       ============================================================ */
+    :root {
+      --bg: #0a0a10;
+      --bg-2: #101018;
+      --card: rgba(255, 255, 255, 0.045);
+      --card-hover: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f4f4f6;
+      --muted: #9b9ba7;
+      --accent: #f97316;
+      --accent-2: #fb923c;
+      --grad: linear-gradient(90deg, #f97316, #ec4899, #8b5cf6);
+      --radius: 18px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(236, 72, 153, 0.07), transparent 60%),
+        radial-gradient(1000px 500px at -10% 30%, rgba(249, 115, 22, 0.06), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .bg-orbs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; animation: float 18s ease-in-out infinite alternate; }
+    .orb-1 { width: 420px; height: 420px; background: #f9731633; top: -80px; right: -60px; }
+    .orb-2 { width: 360px; height: 360px; background: #8b5cf633; bottom: 10%; left: -100px; animation-delay: -6s; }
+    .orb-3 { width: 300px; height: 300px; background: #06b6d422; top: 45%; right: 20%; animation-delay: -12s; }
+    @keyframes float {
+      from { transform: translateY(0) translateX(0) scale(1); }
+      to { transform: translateY(-40px) translateX(30px) scale(1.08); }
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 20px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      text-decoration: none; font-family: inherit;
+    }
+    .btn:hover { transform: translateY(-2px); background: var(--card-hover); }
+    .btn:active { transform: translateY(0); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ec4899);
+      border: none; color: #fff;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+    }
+    .btn-primary:hover { box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5); background: linear-gradient(135deg, var(--accent-2), #f472b6); }
+    .btn-ghost { background: transparent; }
+    .btn-ghost:hover { background: var(--card); }
+    .btn-lg { padding: 14px 28px; font-size: 1.05rem; }
+    .btn-block { width: 100%; }
+    .btn-back { align-self: flex-start; margin-bottom: 18px; }
+    .navbar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 14px 5vw;
+      background: rgba(10, 10, 16, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .brand-icon {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #ec4899);
+      display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; color: #fff;
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
+    }
+    .brand-name { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+    .brand-name em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 26px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.2s; }
+    .hero { max-width: 900px; margin: 0 auto; padding: 90px 5vw 70px; text-align: center; }
+    .hero-badge {
+      display: inline-block; padding: 8px 16px; border-radius: 999px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.85rem; margin-bottom: 26px;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; letter-spacing: -0.03em; font-weight: 800; }
+    .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-sub { color: var(--muted); font-size: 1.1rem; line-height: 1.7; margin: 22px auto 34px; max-width: 640px; }
+    .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-stats { display: flex; justify-content: center; gap: clamp(20px, 5vw, 56px); margin-top: 54px; flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat strong { font-size: 1.9rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat span { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .section { max-width: 1180px; margin: 0 auto; padding: 80px 5vw; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; text-align: center; }
+    .section-sub { color: var(--muted); text-align: center; margin: 12px auto 44px; max-width: 560px; }
+    .sports-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .sport-card {
+      position: relative; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 30px 26px; cursor: pointer; text-align: left;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      font-family: inherit; color: var(--text);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .sport-card::before {
+      content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s ease;
+      background: radial-gradient(400px 200px at 20% 0%, var(--glow, rgba(249,115,22,0.14)), transparent 70%);
+    }
+    .sport-card:hover { transform: translateY(-6px); background: var(--card-hover); border-color: rgba(255,255,255,0.18); box-shadow: var(--shadow); }
+    .sport-card:hover::before { opacity: 1; }
+    .sport-card-icon {
+      width: 62px; height: 62px; border-radius: 18px; display: grid; place-items: center;
+      font-size: 1.9rem; background: var(--card-hover); border: 1px solid var(--border);
+    }
+    .sport-card h3 { font-size: 1.35rem; font-weight: 700; }
+    .sport-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+    .sport-card .card-cta { margin-top: auto; color: var(--text); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+    .detail-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; margin-bottom: 30px; }
+    .detail-icon {
+      width: 86px; height: 86px; border-radius: 26px; display: grid; place-items: center; font-size: 2.6rem;
+      background: var(--card-hover); border: 1px solid var(--border); box-shadow: var(--shadow);
+    }
+    .detail-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; }
+    .detail-tagline { color: var(--muted); }
+    .age-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .age-tab {
+      padding: 11px 22px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--card); color: var(--muted); font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; font-family: inherit; font-size: 0.95rem;
+    }
+    .age-tab:hover { color: var(--text); background: var(--card-hover); }
+    .age-tab.active {
+      color: #fff; border-color: transparent;
+      background: linear-gradient(135deg, var(--sport-a, var(--accent)), var(--sport-b, #ec4899));
+      box-shadow: 0 8px 22px var(--sport-glow, rgba(249, 115, 22, 0.3));
+    }
+    .age-summary {
+      max-width: 720px; margin: 0 auto 34px; padding: 16px 22px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      color: var(--muted); text-align: center; font-size: 0.95rem; line-height: 1.6;
+    }
+    .age-summary strong { color: var(--text); }
+    .view-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+    .view-tab {
+      padding: 11px 22px; border-radius: 999px; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); font-weight: 600; cursor: pointer; font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .view-tab:hover { color: var(--text); }
+    .view-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .days-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    .day-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px; transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .day-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+    .day-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .day-name { font-weight: 800; font-size: 1.1rem; }
+    .day-focus {
+      font-size: 0.78rem; padding: 5px 12px; border-radius: 999px; font-weight: 600;
+      background: var(--sport-soft, rgba(249,115,22,0.14)); color: var(--sport-a, var(--accent));
+      border: 1px solid var(--sport-soft, rgba(249,115,22,0.25));
+    }
+    .day-card h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; }
+    .ex-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .ex-list li {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+      font-size: 0.92rem; color: #d4d4dc; line-height: 1.45;
+      padding-bottom: 8px; border-bottom: 1px dashed rgba(255,255,255,0.06);
+    }
+    .ex-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .ex-t { color: var(--muted); white-space: nowrap; font-size: 0.82rem; font-weight: 600; }
+    .diet-legend { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .diet-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    .meal-list { display: flex; flex-direction: column; gap: 8px; }
+    .meal-list li { display: flex; flex-direction: column; gap: 2px; font-size: 0.92rem; color: #d4d4dc; line-height: 1.45; padding-bottom: 8px; border-bottom: 1px dashed rgba(255,255,255,0.06); }
+    .meal-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .meal-k { color: var(--muted); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+    .steps { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .step-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; transition: transform 0.2s ease; }
+    .step-card:hover { transform: translateY(-4px); }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
+      font-weight: 800; font-size: 1.15rem; margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent), #ec4899); color: #fff;
+    }
+    .step-card h3 { margin-bottom: 8px; font-size: 1.15rem; }
+    .step-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; transition: border-color 0.2s ease; }
+    .faq-item[open] { border-color: rgba(255,255,255,0.2); }
+    .faq-item summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 1.3rem; color: var(--muted); transition: transform 0.2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { color: var(--muted); font-size: 0.93rem; line-height: 1.65; margin-top: 12px; }
+    .footer { border-top: 1px solid var(--border); margin-top: 40px; background: rgba(10,10,16,0.6); }
+    .footer-inner {
+      max-width: 1180px; margin: 0 auto; padding: 34px 5vw;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+    }
+    .footer-brand { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .footer-brand .brand-icon { width: 30px; height: 30px; font-size: 0.9rem; border-radius: 9px; }
+    .footer-brand em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-note { color: var(--muted); font-size: 0.82rem; }
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(5, 5, 10, 0.7); backdrop-filter: blur(8px);
+      display: grid; place-items: center; padding: 20px;
+      overflow-y: auto;
+    }
+    .modal {
+      position: relative; width: 100%; max-width: 440px;
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: 22px;
+      padding: 34px; box-shadow: var(--shadow);
+      animation: pop 0.25s ease;
+    }
+    @keyframes pop { from { transform: scale(0.95) translateY(10px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; width: 34px; height: 34px;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--card);
+      color: var(--muted); cursor: pointer; font-size: 0.9rem;
+    }
+    .modal-close:hover { color: var(--text); background: var(--card-hover); }
+    .auth-tabs { display: flex; background: var(--card); border-radius: 12px; padding: 4px; margin-bottom: 26px; border: 1px solid var(--border); }
+    .auth-tab {
+      flex: 1; padding: 10px; border: none; border-radius: 9px; background: transparent;
+      color: var(--muted); font-weight: 600; cursor: pointer; font-family: inherit; font-size: 0.92rem;
+      transition: all 0.18s ease;
+    }
+    .auth-tab.active { background: linear-gradient(135deg, var(--accent), #ec4899); color: #fff; }
+    .auth-form h2 { font-size: 1.4rem; margin-bottom: 20px; letter-spacing: -0.01em; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .field span { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+    .field input, .field select {
+      padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font-size: 0.95rem; font-family: inherit;
+      outline: none; transition: border-color 0.15s ease;
+    }
+    .field input:focus, .field select:focus { border-color: var(--accent); }
+    .field select option { background: var(--bg-2); color: var(--text); }
+    .form-error {
+      background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5; padding: 10px 14px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 16px;
+    }
+    .form-hint { color: var(--muted); font-size: 0.78rem; margin-top: 14px; text-align: center; }
+    .auth-profile { text-align: center; }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+      display: grid; place-items: center; font-size: 1.8rem; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, var(--accent), #ec4899);
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.35);
+    }
+    .auth-profile h2 { text-transform: capitalize; margin-bottom: 4px; }
+    .profile-meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 22px; }
+    .profile-prefs { text-align: left; margin-bottom: 20px; }
+    .auth-profile .btn { margin-bottom: 10px; }
+    .chat-fab {
+      position: fixed; bottom: 26px; right: 26px; z-index: 90;
+      width: 62px; height: 62px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), #ec4899);
+      box-shadow: 0 12px 34px rgba(249, 115, 22, 0.45);
+      display: grid; place-items: center; font-size: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+    .chat-fab:hover { transform: scale(1.08) rotate(-4deg); }
+    .chat-fab-pulse {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 2px solid rgba(249, 115, 22, 0.6);
+      animation: pulse 2.2s ease-out infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.55); opacity: 0; }
+    }
+    .chat-window {
+      position: fixed; bottom: 100px; right: 26px; z-index: 95;
+      width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 130px));
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: var(--shadow); display: flex; flex-direction: column;
+      overflow: hidden; animation: pop 0.22s ease;
+    }
+    .chat-header {
+      display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+      border-bottom: 1px solid var(--border); background: var(--card);
+    }
+    .chat-bot-avatar {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; font-size: 1.3rem;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    }
+    .chat-title { font-weight: 700; }
+    .chat-status { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; animation: blink 1.6s infinite; }
+    @keyframes blink { 50% { opacity: 0.4; } }
+    .chat-close {
+      margin-left: auto; width: 32px; height: 32px; border-radius: 9px;
+      border: 1px solid var(--border); background: var(--card); color: var(--muted);
+      cursor: pointer; font-size: 0.85rem;
+    }
+    .chat-close:hover { color: var(--text); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .msg { max-width: 84%; padding: 11px 15px; border-radius: 16px; font-size: 0.92rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; animation: msgIn 0.22s ease; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .msg.user { align-self: flex-end; background: linear-gradient(135deg, var(--accent), #ec4899); color: #fff; border-bottom-right-radius: 5px; }
+    .msg.bot { align-self: flex-start; background: var(--card); border: 1px solid var(--border); border-bottom-left-radius: 5px; }
+    .msg.typing { color: var(--muted); font-style: italic; }
+    .chat-quick { display: flex; gap: 8px; padding: 10px 14px; overflow-x: auto; border-top: 1px solid var(--border); }
+    .chat-quick button {
+      flex-shrink: 0; padding: 7px 14px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--card); color: var(--muted);
+      font-size: 0.8rem; cursor: pointer; font-family: inherit; transition: all 0.15s;
+    }
+    .chat-quick button:hover { color: var(--text); border-color: var(--accent); }
+    .chat-input { display: flex; gap: 10px; padding: 14px; border-top: 1px solid var(--border); }
+    .chat-input input {
+      flex: 1; padding: 12px 16px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); outline: none; font-size: 0.92rem; font-family: inherit;
+    }
+    .chat-input input:focus { border-color: var(--accent); }
+    .chat-send {
+      width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), #ec4899); color: #fff; font-size: 1rem;
+      transition: transform 0.15s;
+    }
+    .chat-send:hover { transform: scale(1.08); }
+    ::-webkit-scrollbar { width: 10px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 820px) {
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: rgba(10, 10, 16, 0.97); border-bottom: 1px solid var(--border);
+        max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+      }
+      .nav-links.open { max-height: 240px; }
+      .nav-links a { padding: 15px 5vw; border-top: 1px solid var(--border); }
+      .hamburger { display: flex; }
+      #navCtaBtn { display: none; }
+      .hero { padding-top: 60px; }
+      .chat-window { right: 16px; bottom: 92px; }
+      .chat-fab { right: 16px; bottom: 16px; }
+    }
+
+    /* Guard: the `hidden` attribute must always win over any display rule
+       (fixes the login modal staying visible after "Ir a mi plan"). */
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <!-- Ambient background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="navbar">
+    <a class="brand" href="#top" aria-label="Fadex inicio">
+      <span class="brand-icon">F</span>
+      <span class="brand-name">Fadex</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+      <a href="#sports">Deportes</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" id="navAuthBtn">Iniciar sesión</button>
+      <button class="btn btn-primary" id="navCtaBtn">Empezar gratis</button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-badge">✦ 7 deportes · 3 grupos de edad · rutina + dieta semanal</div>
+      <h1>Entrena <span class="grad">inteligente</span> a cualquier edad</h1>
+      <p class="hero-sub">
+        Calentamientos, estiramientos y menús semanales diseñados para cada deporte
+        —fútbol, gimnasio, natación, tenis, baloncesto, karate y boxeo—
+        y adaptados a tu etapa de vida: 10–30, 30–50 y 50–70 años.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg" id="heroCta">Ver mi rutina</button>
+        <a class="btn btn-ghost btn-lg" href="#sports">Explorar deportes</a>
+      </div>
+      <div class="hero-stats" aria-label="Estadísticas del sitio">
+        <div class="stat"><strong>7</strong><span>deportes</span></div>
+        <div class="stat"><strong>21</strong><span>planes de edad</span></div>
+        <div class="stat"><strong>147</strong><span>días planificados</span></div>
+        <div class="stat"><strong>100%</strong><span>gratis</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SPORTS GRID ===================== -->
+    <section class="section" id="sports">
+      <h2 class="section-title">Elige tu <span class="grad">deporte</span></h2>
+      <p class="section-sub">Cada tarjeta abre la rutina semanal completa y la dieta para tu grupo de edad.</p>
+      <div class="sports-grid" id="sportsGrid"><!-- JS --></div>
+    </section>
+
+    <!-- ===================== SPORT DETAIL ===================== -->
+    <section class="section detail" id="detail" hidden>
+      <div class="detail-head">
+        <button class="btn btn-ghost btn-back" id="backBtn">← Volver</button>
+        <div class="detail-icon" id="detailIcon">⚽</div>
+        <h2 class="detail-title" id="detailTitle">Fútbol</h2>
+        <p class="detail-tagline" id="detailTagline"></p>
+      </div>
+
+      <div class="age-tabs" id="ageTabs" role="tablist" aria-label="Grupo de edad">
+        <button class="age-tab" data-age="joven" role="tab">10–30 años</button>
+        <button class="age-tab" data-age="adulto" role="tab">30–50 años</button>
+        <button class="age-tab" data-age="mayor" role="tab">50–70 años</button>
+      </div>
+
+      <div class="age-summary" id="ageSummary"></div>
+
+      <div class="view-tabs">
+        <button class="view-tab active" data-view="routine">🔥 Rutina semanal</button>
+        <button class="view-tab" data-view="diet">🥗 Dieta semanal</button>
+      </div>
+
+      <div class="days-grid" id="daysGrid"><!-- JS --></div>
+
+      <div class="diet-wrap" id="dietWrap" hidden>
+        <div class="diet-legend">
+          <span>🥣 Desayuno</span><span>🍎 Media mañana</span><span>🍽️ Almuerzo</span><span>🥪 Merienda</span><span>🌙 Cena</span>
+        </div>
+        <div class="diet-grid" id="dietGrid"><!-- JS --></div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section class="section" id="how">
+      <h2 class="section-title">Cómo <span class="grad">funciona</span></h2>
+      <p class="section-sub">Tres pasos y a moverse.</p>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Elige tu deporte</h3>
+          <p>Fútbol, gimnasio, natación, tenis, baloncesto, karate o boxeo.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Selecciona tu edad</h3>
+          <p>10–30, 30–50 o 50–70 años. Cada grupo tiene intensidad, tiempos y ejercicios distintos.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Sigue el plan semanal</h3>
+          <p>Día a día con calentamiento, estiramientos y dieta para rendir y recuperarte.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section" id="faq">
+      <h2 class="section-title">Preguntas <span class="grad">frecuentes</span></h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Necesito material para seguir las rutinas?</summary>
+          <p>Depende del deporte. En gimnasio se asume acceso a pesas; en el resto, los planes usan material mínimo (balón, raqueta, goma elástica, cuerda) y mucho trabajo con el peso corporal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo combinar dos deportes?</summary>
+          <p>Sí. Trata el segundo deporte como tu día de "partido" o sesión técnica y reduce una sesión de fuerza de la semana para no pasar de vueltas.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Por qué los tiempos cambian entre edades?</summary>
+          <p>La recuperación, la elasticidad y la tolerancia al impacto cambian con la edad. Por eso el grupo 10–30 hace más volumen e intensidad, y el grupo 50–70 prioriza movilidad, fuerza de conservación y bajo impacto.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿La dieta sirve si quiero perder peso?</summary>
+          <p>Los menús están pensados para mantener un peso saludable. Si buscas perder grasa, reduce raciones de hidratos en cenas de días de descanso; si buscas ganar músculo, añade una merienda proteica extra.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Tengo que registrarme?</summary>
+          <p>No para ver las rutinas. El registro solo guarda tus preferencias (deporte y edad) en este navegador y personaliza el chatbot.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Es asesoramiento médico?</summary>
+          <p>No. Es orientación general. Si tienes una lesión, embarazo o condición médica, consulta a un profesional antes de empezar.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-icon">F</span> Fadex — Entrena inteligente.
+      </div>
+      <div class="footer-links">
+        <a href="#sports">Deportes</a>
+        <a href="#how">Cómo funciona</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-note">Hecho con 💚 · Contenido orientativo, no sustituye a un profesional.</div>
+    </div>
+  </footer>
+
+  <!-- ===================== AUTH MODAL ===================== -->
+  <div class="modal-overlay" id="authOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="authClose" aria-label="Cerrar">✕</button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Iniciar sesión</button>
+        <button class="auth-tab" data-auth="register">Crear cuenta</button>
+      </div>
+
+      <!-- Login -->
+      <form class="auth-form" id="loginForm" novalidate>
+        <h2 id="authTitle">Bienvenido de vuelta</h2>
+        <label class="field">
+          <span>Nombre de usuario</span>
+          <input type="text" id="loginUser" autocomplete="username" placeholder="tu_usuario" required>
+        </label>
+        <label class="field">
+          <span>Contraseña</span>
+          <input type="password" id="loginPass" autocomplete="current-password" placeholder="••••••••" required>
+        </label>
+        <p class="form-error" id="loginError" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+      </form>
+
+      <!-- Register -->
+      <form class="auth-form" id="registerForm" hidden novalidate>
+        <h2>Crear cuenta nueva</h2>
+        <label class="field">
+          <span>Nombre de usuario</span>
+          <input type="text" id="regUser" autocomplete="username" placeholder="mínimo 3 caracteres" required>
+        </label>
+        <label class="field">
+          <span>Contraseña</span>
+          <input type="password" id="regPass" autocomplete="new-password" placeholder="mínimo 4 caracteres" required>
+        </label>
+        <label class="field">
+          <span>Repite la contraseña</span>
+          <input type="password" id="regPass2" autocomplete="new-password" placeholder="••••••••" required>
+        </label>
+        <label class="field">
+          <span>Deporte favorito</span>
+          <select id="regSport"></select>
+        </label>
+        <label class="field">
+          <span>Rango de edad</span>
+          <select id="regAge">
+            <option value="joven">10–30 años</option>
+            <option value="adulto">30–50 años</option>
+            <option value="mayor">50–70 años</option>
+          </select>
+        </label>
+        <p class="form-error" id="regError" hidden></p>
+        <button class="btn btn-primary btn-block" type="submit">Crear mi cuenta</button>
+        <p class="form-hint">Tu cuenta se guarda solo en este navegador (localStorage).</p>
+      </form>
+
+      <!-- Logged-in panel -->
+      <div class="auth-profile" id="authProfile" hidden>
+        <div class="avatar" id="profileAvatar">U</div>
+        <h2 id="profileName">usuario</h2>
+        <p class="profile-meta" id="profileMeta"></p>
+        <div class="profile-prefs">
+          <label class="field">
+            <span>Deporte favorito</span>
+            <select id="prefSport"></select>
+          </label>
+          <label class="field">
+            <span>Rango de edad</span>
+            <select id="prefAge">
+              <option value="joven">10–30 años</option>
+              <option value="adulto">30–50 años</option>
+              <option value="mayor">50–70 años</option>
+            </select>
+          </label>
+        </div>
+        <button class="btn btn-primary btn-block" id="goMyPlan">Ir a mi plan</button>
+        <button class="btn btn-ghost btn-block" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CHATBOT ===================== -->
+  <button class="chat-fab" id="chatFab" aria-label="Abrir chat de ayuda">
+    <span class="chat-fab-icon">💬</span>
+    <span class="chat-fab-pulse"></span>
+  </button>
+
+  <div class="chat-window" id="chatWindow" hidden>
+    <div class="chat-header">
+      <div class="chat-bot-avatar">🤖</div>
+      <div>
+        <div class="chat-title">Coach IA</div>
+        <div class="chat-status"><span class="dot"></span> en línea · responde al instante</div>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Cerrar chat">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-quick" id="chatQuick">
+      <button data-q="¿Qué rutina me recomiendas para mi edad?">Rutina para mi edad</button>
+      <button data-q="Dame consejos de dieta para rendir más">Dieta para rendir</button>
+      <button data-q="¿Cómo evito lesiones al calentar?">Evitar lesiones</button>
+      <button data-q="¿Cuántos días a la semana debo entrenar?">¿Cuántos días?</button>
+    </div>
+    <form class="chat-input" id="chatForm">
+      <input type="text" id="chatText" placeholder="Escribe tu pregunta..." autocomplete="off">
+      <button type="submit" class="chat-send" aria-label="Enviar">➤</button>
+    </form>
+  </div>
+
+  <script>
+    /* ============================================================
+       DATA — 7 deportes × 3 grupos de edad
+       Cada deporte: meta + routine {joven, adulto, mayor}
+       Cada grupo: 7 días con calentamiento, estiramientos y dieta.
+       ============================================================ */
+    const DATA = {
+      futbol: {
+        name: "Fútbol",
+        icon: "⚽",
+        tagline: "Resistencia, agilidad y control de balón",
+        accent: "#22c55e",
+        color2: "#4ade80",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Élite formativa: intensidad alta y progresión rápida.",
+            intensity: "Alta",
+            session: "55–70 min",
+            days: [
+              { day: "Lunes", focus: "Activación + técnica de conducción", warmup: [{ n: "Trote suave alrededor del campo", t: "5 min" }, { n: "Movilidad de tobillos y caderas (círculos)", t: "3 min" }, { n: "Skipping alto y talones al glúteo", t: "2×20 m" }, { n: "Conducción de balón en zigzag entre conos", t: "4×30 s" }, { n: "Pases en pareja a un toque", t: "5 min" }], stretches: [{ n: "Cuádriceps de pie", t: "30 s/pierna" }, { n: "Isquiotibiales sentado", t: "30 s/pierna" }, { n: "Gemelos contra pared", t: "30 s/pierna" }] },
+              { day: "Martes", focus: "Velocidad y potencia", warmup: [{ n: "Trote progresivo", t: "4 min" }, { n: "Aperturas y cierres de cadera", t: "2×10" }, { n: "Sprints cortos progresivos", t: "6×20 m" }, { n: "Saltos a valla / bipedestación explosiva", t: "3×8" }, { n: "Remates a portería tras sprint", t: "8 tiros" }], stretches: [{ n: "Estiramiento de psoas en zancada", t: "30 s/pierna" }, { n: "Aductores en mariposa", t: "40 s" }, { n: "Femorales con banda", t: "30 s/pierna" }] },
+              { day: "Miércoles", focus: "Resistencia específica", warmup: [{ n: "Carrera continua suave con balón", t: "10 min" }, { n: "Circuito móvil: conos + escalera de agilidad", t: "3 rondas" }, { n: "Circuito intermitente 30/30 (correr/pase)", t: "12 min" }], stretches: [{ n: "Estiramiento global de espalda (niño)", t: "45 s" }, { n: "Cuádriceps en decúbito", t: "30 s/pierna" }, { n: "Piriforme cruzado", t: "30 s/lado" }] },
+              { day: "Jueves", focus: "Recuperación activa + movilidad", warmup: [{ n: "Bici o trote muy suave", t: "10 min" }, { n: "Movilidad articular completa (cuello→tobillos)", t: "8 min" }, { n: "Trabajo técnico ligero: control orientado", t: "10 min" }], stretches: [{ n: "Yoga flow suave (saludo al sol)", t: "8 min" }, { n: "Foam roller en cuádriceps e isquios", t: "5 min" }] },
+              { day: "Viernes", focus: "Fuerza + agilidad", warmup: [{ n: "Trote + activación de glúteo con banda", t: "6 min" }, { n: "Sentadillas y zancadas con peso corporal", t: "3×12" }, { n: "Escalera de agilidad (patrones rápidos de pie)", t: "5×20 s" }, { n: "Cambios de dirección al 80%", t: "6 repeticiones" }], stretches: [{ n: "Glúteo en cuclillas", t: "40 s/lado" }, { n: "Isquiotibiales tumbado con banda", t: "30 s/pierna" }, { n: "Dorsal con apoyo en valla", t: "30 s/lado" }] },
+              { day: "Sábado", focus: "Partido o simulacro", warmup: [{ n: "Activación general (trote + movilidad)", t: "8 min" }, { n: "Rondo 5×2 (caliente con posesión)", t: "8 min" }, { n: "Sprints y remates de víspera", t: "4 repeticiones" }], stretches: [{ n: "Estiramiento completo post-partido", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso total o paseo", warmup: [{ n: "Paseo ligero o nado suave", t: "20–30 min" }], stretches: [{ n: "Movilidad libre y respiración diafragmática", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena con plátano, miel y leche", "Media mañana": "Yogur griego + nueces", Almuerzo: "Pechuga de pollo, arroz y brócoli", Merienda: "Tostada integral con tomate y AOVE", Cena: "Salmón al horno con verduras" } },
+              { day: "Martes", meals: { Desayuno: "Tostadas integrales con huevo y aguacate", "Media mañana": "Fruta + puñado de almendras", Almuerzo: "Pasta integral con pavo y tomate", Merienda: "Batido de leche y fruta", Cena: "Tortilla francesa con espinacas y ensalada" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie de frutas con avena", "Media mañana": "Bocadillo pequeño de pavo", Almuerzo: "Lentejas con verduras", Merienda: "Yogur con granola", Cena: "Merluza con patata cocida" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos revueltos con tostada integral", "Media mañana": "Plátano + frutos secos", Almuerzo: "Arroz con pollo y pimientos", Merienda: "Cottage con piña", Cena: "Crema de calabaza + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Vasos de leche + cereales integrales", "Media mañana": "Fruta desecada", Almuerzo: "Wrap integral de atún", Merienda: "Tostada con aguacate", Cena: "Pasta con atún y tomate natural" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + miel + fresas (pre-partido 2–3 h antes)", "Media mañana": "Gel o fruta antes del partido", Almuerzo: "Comida post-partido: pollo/pavo + hidratos + ensalada", Merienda: "Yogur y fruta", Cena: "Pizza casera de masa integral (día libre)" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos con tostadas y zumo natural", "Media mañana": "Fruta", Almuerzo: "Paella o arroz con verduras y pollo", Merienda: "Frutos secos", Cena: "Ensalada con queso fresco y atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Mantener rendimiento protegiendo articulaciones; más movilidad.",
+            intensity: "Media-alta",
+            session: "45–60 min",
+            days: [
+              { day: "Lunes", focus: "Activación + fuerza básica", warmup: [{ n: "Bici estática o trote suave", t: "6 min" }, { n: "Movilidad de cadera y hombros", t: "5 min" }, { n: "Sentadilla goblet y zancada controlada", t: "3×10" }, { n: "Conducción de balón suave", t: "8 min" }], stretches: [{ n: "Cuádriceps con apoyo en pared", t: "30 s/pierna" }, { n: "Pecho en marco de puerta", t: "30 s" }] },
+              { day: "Martes", focus: "Cardio intermitente", warmup: [{ n: "Trote progresivo", t: "5 min" }, { n: "Skipping bajo impacto", t: "2×20 s" }, { n: "Series de carrera 1' fuerte / 2' suave", t: "6 series" }], stretches: [{ n: "Isquiotibiales con cinturón o banda", t: "30 s/pierna" }, { n: "Gemelo de pie", t: "30 s/pierna" }] },
+              { day: "Miércoles", focus: "Técnica + core", warmup: [{ n: "Movilidad completa", t: "6 min" }, { n: "Pases y control orientado", t: "12 min" }, { n: "Plancha, bird-dog y hollow", t: "3 rondas" }], stretches: [{ n: "Gato-camello", t: "8 repeticiones" }, { n: "Cobra suave", t: "2×20 s" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo rápido o natación suave", t: "25 min" }], stretches: [{ n: "Rutina de movilidad completa", t: "10 min" }] },
+              { day: "Viernes", focus: "Fuerza + agilidad moderada", warmup: [{ n: "Trote + círculos articulares", t: "6 min" }, { n: "Peso muerto rumano con mancuernas", t: "3×10" }, { n: "Escalera de agilidad a impacto bajo", t: "4×20 s" }], stretches: [{ n: "Postura del fencer", t: "40 s" }] },
+              { day: "Sábado", focus: "Partido amistoso", warmup: [{ n: "Activación progresiva con balón", t: "10 min" }, { n: "Rondos y remates ligeros", t: "8 min" }], stretches: [{ n: "Estiramiento post-partido completo", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo suave en familia", t: "30 min" }], stretches: [{ n: "Respiración y estiramientos de espalda", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Yogur con avena y semillas de chía", "Media mañana": "Manzana + nueces", Almuerzo: "Salmón con quinoa y espárragos", Merienda: "Tostada integral con hummus", Cena: "Sopa de verduras + tortilla clara" } },
+              { day: "Martes", meals: { Desayuno: "Tostada integral con pavo y tomate", "Media mañana": "Yogur natural", Almuerzo: "Pollo a la plancha con boniato", Merienda: "Fruta + té verde", Cena: "Ensalada de garbanzos con atún" } },
+              { day: "Miércoles", meals: { Desayuno: "Batido verde con proteína vegetal", "Media mañana": "Fruta + chocolate negro 85%", Almuerzo: "Pasta integral con verduras y caballa", Merienda: "Puñado de anacardos", Cena: "Revuelto de champiñones + pescado blanco" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge de avena con canela", "Media mañana": "Kéfir", Almuerzo: "Lentejas con arroz integral", Merienda: "Zanahoria + hummus", Cena: "Pollo al vapor con calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Huevos con espinacas", "Media mañana": "Fruta + té", Almuerzo: "Bowl de arroz, salmón y aguacate", Merienda: "Yogur griego", Cena: "Crema de verduras + tortilla" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + fruta (pre-partido)", "Media mañana": "Fruta durante el partido", Almuerzo: "Recuperación: pavo + arroz + verdura", Merienda: "Frutos secos", Cena: "Cena social: carne magra a la brasa + ensalada" } },
+              { day: "Domingo", meals: { Desayuno: "Tostadas con tomate y AOVE + huevo", "Media mañana": "Nueces", Almuerzo: "Arroz con verduras y pollo", Merienda: "Yogur con miel", Cena: "Ensalada completa + queso fresco" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Prioridad: movilidad, fuerza de conservación y cero impacto excesivo.",
+            intensity: "Moderada",
+            session: "35–45 min",
+            days: [
+              { day: "Lunes", focus: "Movilidad + caminar con balón", warmup: [{ n: "Marcha suave con círculos de brazos", t: "5 min" }, { n: "Movilidad de cadera y tobillo asistida", t: "6 min" }, { n: "Conducción de balón caminando", t: "10 min" }], stretches: [{ n: "Cuádriceps asistido en pared", t: "25 s/pierna" }, { n: "Gemelos agarrado a barra", t: "25 s/pierna" }] },
+              { day: "Martes", focus: "Fuerza de conservación", warmup: [{ n: "Bici suave o marcha", t: "6 min" }, { n: "Sentadilla a silla", t: "2×10" }, { n: "Elevación de talones", t: "2×12" }, { n: "Press de hombros con gomas", t: "2×10" }], stretches: [{ n: "Isquiotibiales con toalla", t: "25 s/pierna" }, { n: "Pecho con palo", t: "25 s" }] },
+              { day: "Miércoles", focus: "Cardio bajo impacto", warmup: [{ n: "Marcha rápida o bici", t: "20 min" }, { n: "Pases estáticos con compañero", t: "8 min" }], stretches: [{ n: "Estiramiento de espalda en silla", t: "30 s" }, { n: "Cuello suave (lados)", t: "20 s/lado" }] },
+              { day: "Jueves", focus: "Equilibrio y coordinación", warmup: [{ n: "Apoyo monopodal con ayuda", t: "3×20 s/pierna" }, { n: "Marcha talón-punta", t: "2×10 m" }, { n: "Toques de balón sin desplazarse", t: "6 min" }], stretches: [{ n: "Glúteo sentado en silla", t: "25 s/lado" }, { n: "Antebrazo y muñeca", t: "20 s/lado" }] },
+              { day: "Viernes", focus: "Fuerza + técnica ligera", warmup: [{ n: "Movilidad + goma elástica", t: "8 min" }, { n: "Zancada corta asistida", t: "2×8/pierna" }, { n: "Control y pase a 5 m", t: "10 min" }], stretches: [{ n: "Cadena posterior completa", t: "30 s" }, { n: "Cuádriceps suave", t: "25 s/pierna" }] },
+              { day: "Sábado", focus: "Juego recreativo (fútbol 7 tranquilo o fútbol tenis)", warmup: [{ n: "Activación progresiva", t: "10 min" }], stretches: [{ n: "Enfriamiento completo guiado", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo al aire libre", t: "30 min" }], stretches: [{ n: "Estiramientos suaves globales", t: "6 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir con avena y arándanos", "Media mañana": "Puñado de nueces", Almuerzo: "Merluza al horno con patata y puerro", Merienda: "Yogur con miel", Cena: "Crema de verduras + tortilla francesa" } },
+              { day: "Martes", meals: { Desayuno: "Tostada integral con tomate y AOVE + queso fresco", "Media mañana": "Pera", Almuerzo: "Pollo guisado con verduras", Merienda: "Infusión + galleta integral", Cena: "Ensalada de lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena cocida con manzana y canela", "Media mañana": "Yogur natural", Almuerzo: "Salmón con quinoa y calabacín", Merienda: "Fruta + frutos secos", Cena: "Sopa de fideos + pescado blanco" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo cocido + tostada integral", "Media mañana": "Mandarina", Almuerzo: "Garbanzos con espinacas", Merienda: "Yogur", Cena: "Tortilla de patata pequeña + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Batido de leche con avena y plátano", "Media mañana": "Almendras", Almuerzo: "Arroz con verduras y pavo", Merienda: "Fruta", Cena: "Puré de calabaza + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo natural + fruta", "Media mañana": "Yogur", Almuerzo: "Paella de verduras y pollo", Merienda: "Chocolate negro + nueces", Cena: "Ensalada templada de queso fresco" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos con tostada y tomate", "Media mañana": "Fruta", Almuerzo: "Cocido ligero (garbanzo + pollo + verdura)", Merienda: "Infusión", Cena: "Crema de calabacín + pescado" } }
+            ]
+          }
+        }
+      },
+
+      gimnasio: {
+        name: "Gimnasio",
+        icon: "🏋️",
+        tagline: "Fuerza, hipertrofia y movilidad",
+        accent: "#f97316",
+        color2: "#fbbf24",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Volumen alto y progresión de cargas; técnica antes que peso.",
+            intensity: "Muy alta",
+            session: "60–75 min",
+            days: [
+              { day: "Lunes", focus: "Empuje (pecho/hombro/tríceps)", warmup: [{ n: "Bici o cinta", t: "5 min" }, { n: "Movilidad de hombro con banda", t: "4 min" }, { n: "Press banca vacío + progresión", t: "3 series" }, { n: "Press banca pesado", t: "4×6–8" }, { n: "Press inclinado mancuernas", t: "3×10" }, { n: "Fondos y extensiones de tríceps", t: "3×10–12" }], stretches: [{ n: "Pecho en marco de puerta", t: "30 s" }, { n: "Tríceps sobre la cabeza", t: "25 s/brazo" }] },
+              { day: "Martes", focus: "Tirón (espalda/bíceps)", warmup: [{ n: "Remo ligero en máquina", t: "5 min" }, { n: "Activación escapular con banda", t: "3 min" }, { n: "Dominadas o jalón al pecho", t: "4×8" }, { n: "Remo con barra", t: "4×8–10" }, { n: "Curl bíceps", t: "3×12" }], stretches: [{ n: "Dorsal en suspensión", t: "30 s" }, { n: "Bíceps contra pared", t: "25 s/brazo" }] },
+              { day: "Miércoles", focus: "Pierna completa", warmup: [{ n: "Cinta + movilidad de cadera", t: "7 min" }, { n: "Sentadilla con barra progresiva", t: "4×6–8" }, { n: "Prensa", t: "3×10" }, { n: "Peso muerto rumano", t: "3×10" }, { n: "Gemelos", t: "4×15" }], stretches: [{ n: "Cuádriceps de pie", t: "30 s/pierna" }, { n: "Isquiotibiales sentado", t: "30 s" }] },
+              { day: "Jueves", focus: "Core + cardio HIIT", warmup: [{ n: "Saltar la cuerda", t: "5 min" }, { n: "Plancha, rueda abdominal, elevaciones de piernas", t: "4 rondas" }, { n: "HIIT en cinta o bici 30/30", t: "15 min" }], stretches: [{ n: "Gato-camello", t: "8 reps" }, { n: "Piriforme", t: "30 s/lado" }] },
+              { day: "Viernes", focus: "Full body fuerza", warmup: [{ n: "Movilidad general + series de aproximación", t: "8 min" }, { n: "Peso muerto convencional", t: "4×5" }, { n: "Press militar", t: "3×8" }, { n: "Dominadas lastradas", t: "3×6" }], stretches: [{ n: "Cadena posterior completa", t: "40 s" }, { n: "Hombro con toalla", t: "25 s/lado" }] },
+              { day: "Sábado", focus: "Cardio + puntos débiles", warmup: [{ n: "Bici suave", t: "5 min" }, { n: "Cardio LISS 40–60% FC", t: "25 min" }, { n: "Trabajo de brazos o pantorrilla (punto débil)", t: "20 min" }], stretches: [{ n: "Estiramiento global", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso total", warmup: [{ n: "Paseo ligero opcional", t: "20 min" }], stretches: [{ n: "Movilidad suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena 80 g + proteína + plátano", "Media mañana": "Tostada integral + pavo", Almuerzo: "Pollo 200 g + arroz + brócoli", Merienda: "Yogur griego + nueces", Cena: "Salmón + verduras + boniato" } },
+              { day: "Martes", meals: { Desayuno: "Huevos (3) + tostadas", "Media mañana": "Batido de proteína + fruta", Almuerzo: "Ternera magra + pasta integral", Merienda: "Cottage + piña", Cena: "Pollo + ensalada grande" } },
+              { day: "Miércoles", meals: { Desayuno: "Porridge + miel + fresas", "Media mañana": "Frutos secos", Almuerzo: "Arroz + atún + aguacate", Merienda: "Tostada + hummus", Cena: "Tortilla clara + pavo + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Yogur + granola + proteína", "Media mañana": "Plátano", Almuerzo: "Lentejas + arroz (completas)", Merienda: "Batido post-HIIT", Cena: "Merluza + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + aguacate + huevo", "Media mañana": "Yogur + miel", Almuerzo: "Pavo + quinoa + verduras asadas", Merienda: "Fruta + almendras", Cena: "Salmón + boniato" } },
+              { day: "Sábado", meals: { Desayuno: "Tortillas + avena", "Media mañana": "Fruta", Almuerzo: "Comida libre moderada", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Domingo", meals: { Desayuno: "Pancakes de avena + proteína", "Media mañana": "Nueces", Almuerzo: "Arroz + pollo + verduras", Merienda: "Cottage", Cena: "Ensalada + atún + huevo" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Fuerza con énfasis en técnica, movilidad y gestión del estrés.",
+            intensity: "Alta",
+            session: "50–65 min",
+            days: [
+              { day: "Lunes", focus: "Fuerza full body A", warmup: [{ n: "Bici", t: "5 min" }, { n: "Movilidad hombro/cadera", t: "5 min" }, { n: "Sentadilla goblet", t: "3×10" }, { n: "Press banca", t: "4×8" }, { n: "Remo con barra", t: "4×8" }], stretches: [{ n: "Pecho puerta", t: "30 s" }, { n: "Cuádriceps", t: "30 s/pierna" }] },
+              { day: "Martes", focus: "Cardio Z2 + core", warmup: [{ n: "Cinta o elíptica zona 2", t: "30 min" }, { n: "Plancha", t: "3×45 s" }], stretches: [{ n: "Isquios con banda", t: "30 s/pierna" }] },
+              { day: "Miércoles", focus: "Fuerza full body B", warmup: [{ n: "Remo máquina", t: "5 min" }, { n: "Peso muerto rumano", t: "4×8" }, { n: "Press militar", t: "3×8" }, { n: "Jalón al pecho", t: "3×10" }], stretches: [{ n: "Dorsal suspensión", t: "30 s" }, { n: "Glúteo cuclillas", t: "30 s/lado" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo rápido o nado", t: "30 min" }], stretches: [{ n: "Movilidad completa", t: "10 min" }] },
+              { day: "Viernes", focus: "Pierna + core", warmup: [{ n: "Cinta + movilidad", t: "7 min" }, { n: "Sentadilla", t: "4×8" }, { n: "Zancadas", t: "3×10/pierna" }, { n: "Core antirrotación", t: "3×10" }], stretches: [{ n: "Isquios sentado", t: "30 s" }, { n: "Flexor de cadera zancada", t: "30 s/pierna" }] },
+              { day: "Sábado", focus: "Cardio o deporte libre", warmup: [{ n: "Actividad elegida (pádel, carrera, bici)", t: "40–60 min" }], stretches: [{ n: "Global post-actividad", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo suave", t: "30 min" }], stretches: [{ n: "Respiración + espalda", t: "6 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína + arándanos", "Media mañana": "Yogur", Almuerzo: "Pollo + arroz integral + verduras", Merienda: "Fruta + nueces", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada integral", "Media mañana": "Kéfir", Almuerzo: "Pasta + atún + tomate", Merienda: "Té + chocolate 85%", Cena: "Crema verduras + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie proteico", "Media mañana": "Almendras", Almuerzo: "Ternera + boniato + ensalada", Merienda: "Yogur griego", Cena: "Pescado blanco + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge + canela", "Media mañana": "Fruta", Almuerzo: "Garbanzos + arroz + verduras", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo + tomate", "Media mañana": "Yogur + miel", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + fruta", "Media mañana": "Frutos secos", Almuerzo: "Comida social equilibrada", Merienda: "Yogur", Cena: "Pizza casera integral (libre)" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Nueces", Almuerzo: "Arroz + pollo + verduras", Merienda: "Fruta", Cena: "Ensalada + queso + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Fuerza de conservación con máquinas/gomas, sin cargas máximas.",
+            intensity: "Moderada",
+            session: "40–50 min",
+            days: [
+              { day: "Lunes", focus: "Fuerza superior con máquinas", warmup: [{ n: "Bici", t: "6 min" }, { n: "Movilidad hombro con goma", t: "4 min" }, { n: "Press pecho máquina", t: "3×12" }, { n: "Remo en máquina", t: "3×12" }], stretches: [{ n: "Pecho con palo", t: "25 s" }, { n: "Cuello suave", t: "20 s/lado" }] },
+              { day: "Martes", focus: "Caminata + equilibrio", warmup: [{ n: "Marcha rápida", t: "25 min" }, { n: "Apoyo monopodal asistido", t: "3×20 s/pierna" }], stretches: [{ n: "Gemelo", t: "25 s/pierna" }] },
+              { day: "Miércoles", focus: "Fuerza inferior con máquinas", warmup: [{ n: "Bici", t: "6 min" }, { n: "Prensa ligera", t: "3×12" }, { n: "Extensión/flexión de rodilla", t: "2×12" }, { n: "Elevación de talones", t: "2×12" }], stretches: [{ n: "Cuádriceps asistido", t: "25 s/pierna" }, { n: "Isquios con toalla", t: "25 s/pierna" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo o natación suave", t: "30 min" }], stretches: [{ n: "Movilidad en silla", t: "8 min" }] },
+              { day: "Viernes", focus: "Full body gomas + core", warmup: [{ n: "Movilidad + gomas", t: "8 min" }, { n: "Remo con goma", t: "3×12" }, { n: "Press hombro goma", t: "2×12" }, { n: "Plancha en silla o pared", t: "3×20 s" }], stretches: [{ n: "Cadena posterior", t: "25 s" }, { n: "Glúteo en silla", t: "25 s/lado" }] },
+              { day: "Sábado", focus: "Actividad recreativa", warmup: [{ n: "Baile, senderismo o bici estática suave", t: "30–40 min" }], stretches: [{ n: "Global", t: "6 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena + arándanos", "Media mañana": "Nueces", Almuerzo: "Merluza + patata + puerro", Merienda: "Yogur + miel", Cena: "Crema de verduras + tortilla clara" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + tomate + AOVE + queso fresco", "Media mañana": "Pera", Almuerzo: "Pollo guisado + verduras", Merienda: "Infusión", Cena: "Ensalada de lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana + canela", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado blanco" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo cocido + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos + espinacas", Merienda: "Yogur", Cena: "Tortilla pequeña + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Batido de leche + avena + plátano", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo + verduras", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella de verduras y pollo", Merienda: "Chocolate + nueces", Cena: "Ensalada templada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      },
+
+      natacion: {
+        name: "Natación",
+        icon: "🏊",
+        tagline: "Técnica, capacidad pulmonar y articulaciones felices",
+        accent: "#06b6d4",
+        color2: "#67e8f9",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Volumen de metros alto con series de calidad.",
+            intensity: "Alta",
+            session: "60–75 min",
+            days: [
+              { day: "Lunes", focus: "Técnica crol", warmup: [{ n: "200 m nado suave", t: "5 min" }, { n: "4×50 m pies crol con tabla", t: "4 min" }, { n: "4×50 m crol con pull-buoy", t: "5 min" }, { n: "8×50 m crol técnica (focus: brazada larga)", t: "10 min" }], stretches: [{ n: "Hombro cruzado", t: "30 s/brazo" }, { n: "Dorsal en barra", t: "30 s" }] },
+              { day: "Martes", focus: "Series de resistencia", warmup: [{ n: "300 m suave + 4×50 pies", t: "8 min" }, { n: "6×100 m crol ritmo medio (descanso 20 s)", t: "18 min" }, { n: "4×50 m esprint", t: "6 min" }], stretches: [{ n: "Pecho en marco", t: "30 s" }, { n: "Tríceps", t: "25 s/brazo" }] },
+              { day: "Miércoles", focus: "Espalda y mariposa técnica", warmup: [{ n: "200 m crol", t: "4 min" }, { n: "4×25 m mariposa piernas", t: "4 min" }, { n: "6×50 m espalda técnica", t: "8 min" }], stretches: [{ n: "Movilidad torácica con palo", t: "2 min" }, { n: "Abdominales laterales (stretch)", t: "25 s/lado" }] },
+              { day: "Jueves", focus: "Fuerza fuera del agua (seco)", warmup: [{ n: "Movilidad hombro + core", t: "10 min" }, { n: "Dominadas y remo", t: "4×8" }, { n: "Plancha y hollow", t: "3×40 s" }, { n: "Medicine ball slams", t: "3×10" }], stretches: [{ n: "Global upper body", t: "8 min" }] },
+              { day: "Viernes", focus: "Series de velocidad", warmup: [{ n: "400 m progresivo", t: "8 min" }, { n: "8×25 m esprint crol", t: "8 min" }, { n: "4×50 m braza/pies", t: "6 min" }], stretches: [{ n: "Isquios y cuádriceps", t: "30 s/pierna" }] },
+              { day: "Sábado", focus: "Distancia continua", warmup: [{ n: "Nado continuo ritmo cómodo", t: "30–40 min" }], stretches: [{ n: "Estiramiento completo post-nado", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo o bici suave", t: "20 min" }], stretches: [{ n: "Movilidad suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + plátano + leche", "Media mañana": "Fruta + nueces", Almuerzo: "Pollo + arroz + verduras", Merienda: "Yogur + granola", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Tostadas + huevo + zumo", "Media mañana": "Yogur", Almuerzo: "Pasta + atún", Merienda: "Batido + fruta", Cena: "Tortilla + espinacas" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie + avena", "Media mañana": "Bocadillo pavo", Almuerzo: "Lentejas + verduras", Merienda: "Fruta", Cena: "Merluza + patata" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Plátano", Almuerzo: "Arroz + pollo", Merienda: "Yogur + miel", Cena: "Crema + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Avena + miel", "Media mañana": "Frutos secos", Almuerzo: "Wrap de atún + fruta", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + plátano (pre-nado)", "Media mañana": "Gel o fruta", Almuerzo: "Recuperación: pavo + arroz", Merienda: "Yogur", Cena: "Pizza casera integral" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Paella + pollo", Merienda: "Nueces", Cena: "Ensalada + queso + atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Técnica + zona 2: cuidar hombros con calentamiento completo.",
+            intensity: "Media",
+            session: "45–60 min",
+            days: [
+              { day: "Lunes", focus: "Crol técnico + Z2", warmup: [{ n: "200 m suave", t: "5 min" }, { n: "4×50 m técnica con materiales", t: "6 min" }, { n: "6×100 m ritmo cómodo", t: "15 min" }], stretches: [{ n: "Hombro cruzado", t: "30 s/brazo" }, { n: "Dorsal barra", t: "30 s" }] },
+              { day: "Martes", focus: "Seco: fuerza hombro/core", warmup: [{ n: "Movilidad con banda", t: "8 min" }, { n: "Remo y press con goma", t: "3×12" }, { n: "Plancha", t: "3×40 s" }], stretches: [{ n: "Pecho puerta", t: "30 s" }] },
+              { day: "Miércoles", focus: "Braza/espalda suave", warmup: [{ n: "200 m crol", t: "5 min" }, { n: "6×50 m alternando estilos", t: "10 min" }], stretches: [{ n: "Movilidad torácica", t: "2 min" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo o bici", t: "30 min" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Viernes", focus: "Series moderadas", warmup: [{ n: "300 m suave + 4×50 pies", t: "8 min" }, { n: "5×100 m (descanso 30 s)", t: "15 min" }, { n: "100 m suave cierre", t: "3 min" }], stretches: [{ n: "Isquios + hombros", t: "30 s" }] },
+              { day: "Sábado", focus: "Nado continuo largo", warmup: [{ n: "Nado Z2 continuo", t: "35–45 min" }], stretches: [{ n: "Post-nado completo", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo suave", t: "25 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína + fruta", "Media mañana": "Yogur", Almuerzo: "Pollo + quinoa + verduras", Merienda: "Fruta + nueces", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Kéfir", Almuerzo: "Pasta + caballa", Merienda: "Té + fruta", Cena: "Crema + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie verde + proteína", "Media mañana": "Almendras", Almuerzo: "Arroz + pollo", Merienda: "Yogur griego", Cena: "Pescado blanco + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge + canela", "Media mañana": "Fruta", Almuerzo: "Garbanzos + arroz", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo", "Media mañana": "Yogur + miel", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-nado)", "Media mañana": "Fruta", Almuerzo: "Recuperación + hidratos", Merienda: "Nueces", Cena: "Comida social moderada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Ensalada + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Nado suave y técnica: el agua protege las articulaciones.",
+            intensity: "Suave-moderada",
+            session: "35–45 min",
+            days: [
+              { day: "Lunes", focus: "Crol suave + técnica", warmup: [{ n: "150 m nado muy suave", t: "5 min" }, { n: "4×50 m con material de apoyo", t: "6 min" }, { n: "4×50 m crol cómodo (descanso amplio)", t: "8 min" }], stretches: [{ n: "Hombro suave", t: "25 s/brazo" }] },
+              { day: "Martes", focus: "Aquagym o nado espalda", warmup: [{ n: "Aquagym en grupo o espalda suave", t: "30 min" }], stretches: [{ n: "Cuello + hombros", t: "20 s/lado" }] },
+              { day: "Miércoles", focus: "Respiración y flotación", warmup: [{ n: "Ejercicios de respiración y piernas", t: "15 min" }, { n: "Nado continuo suave", t: "10 min" }], stretches: [{ n: "Dorsal y pecho suaves", t: "25 s" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo", t: "30 min" }], stretches: [{ n: "Global suave", t: "6 min" }] },
+              { day: "Viernes", focus: "Nado continuo cómodo", warmup: [{ n: "200 m suave", t: "6 min" }, { n: "Nado continuo estilo libre", t: "15–20 min" }], stretches: [{ n: "Hombro y espalda", t: "25 s" }] },
+              { day: "Sábado", focus: "Nado social / familia", warmup: [{ n: "Nado recreativo sin reloj", t: "30 min" }], stretches: [{ n: "Enfriamiento guiado", t: "6 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo ligero", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena", "Media mañana": "Nueces", Almuerzo: "Merluza + patata", Merienda: "Yogur + miel", Cena: "Crema + tortilla clara" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + tomate + AOVE", "Media mañana": "Pera", Almuerzo: "Pollo + verduras", Merienda: "Infusión", Cena: "Ensalada de lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos + espinacas", Merienda: "Yogur", Cena: "Tortilla + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Leche + avena + plátano", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella suave", Merienda: "Chocolate + nueces", Cena: "Ensalada templada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      },
+
+      tenis: {
+        name: "Tenis",
+        icon: "🎾",
+        tagline: "Explosividad lateral, muñeca y precisión",
+        accent: "#a3e635",
+        color2: "#bef264",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Trabajo de piernas y saque: potencia y precisión.",
+            intensity: "Alta",
+            session: "60–75 min",
+            days: [
+              { day: "Lunes", focus: "Footwork + fondo de pista", warmup: [{ n: "Trote + círculos articulares", t: "5 min" }, { n: "Escalera de agilidad (patrones laterales)", t: "5×20 s" }, { n: "Sombras (desplazamientos con gesto técnico)", t: "3×1 min" }, { n: "Canastas: derecho y revés cruzado", t: "15 min" }], stretches: [{ n: "Cuádriceps", t: "30 s/pierna" }, { n: "Antebrazo y muñeca", t: "20 s/lado" }] },
+              { day: "Martes", focus: "Saque + volea", warmup: [{ n: "Movilidad de hombro con banda", t: "5 min" }, { n: "Lanzamientos de medicine ball", t: "3×8" }, { n: "Saque a dianas (1ª y 2ª)", t: "20 min" }, { n: "Voleas en pareja en la red", t: "10 min" }], stretches: [{ n: "Hombro con toalla", t: "25 s/brazo" }, { n: "Tríceps", t: "25 s/brazo" }] },
+              { day: "Miércoles", focus: "Fuerza de piernas", warmup: [{ n: "Bici + movilidad", t: "7 min" }, { n: "Sentadilla búlgara", t: "3×10/pierna" }, { n: "Saltos laterales a cajón", t: "3×8" }, { n: "Prensa y femoral", t: "3×10" }], stretches: [{ n: "Isquios", t: "30 s/pierna" }, { n: "Glúteo", t: "30 s/lado" }] },
+              { day: "Jueves", focus: "Recuperación + movilidad", warmup: [{ n: "Bici suave o paseo", t: "15 min" }, { n: "Movilidad de cadera y tobillo", t: "10 min" }], stretches: [{ n: "Yoga suave", t: "10 min" }] },
+              { day: "Viernes", focus: "Puntos dirigidos", warmup: [{ n: "Sombras + mini-tenis", t: "8 min" }, { n: "Juego dirigido: 2 saques + puntos", t: "30 min" }, { n: "Sprints de cambio de dirección", t: "6×15 s" }], stretches: [{ n: "Global piernas", t: "8 min" }] },
+              { day: "Sábado", focus: "Partido", warmup: [{ n: "Calentamiento de match: mini-tenis + saques", t: "15 min" }], stretches: [{ n: "Post-partido completo", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + plátano + yogur", "Media mañana": "Fruta + nueces", Almuerzo: "Pollo + arroz + verduras", Merienda: "Tostada + pavo", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Tostadas + huevo", "Media mañana": "Yogur", Almuerzo: "Pasta + pavo", Merienda: "Batido", Cena: "Tortilla + espinacas" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie + avena", "Media mañana": "Bocadillo", Almuerzo: "Lentejas + verduras", Merienda: "Fruta", Cena: "Merluza + patata" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Plátano", Almuerzo: "Arroz + pollo", Merienda: "Yogur + miel", Cena: "Crema + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Avena + miel", "Media mañana": "Frutos secos", Almuerzo: "Wrap atún", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + plátano (pre-partido)", "Media mañana": "Plátano entre sets", Almuerzo: "Recuperación", Merienda: "Yogur", Cena: "Pizza integral" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Paella", Merienda: "Nueces", Cena: "Ensalada + atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Menos volumen de saques: calidad sobre cantidad, cuidar codo.",
+            intensity: "Media",
+            session: "50–65 min",
+            days: [
+              { day: "Lunes", focus: "Técnica + footwork moderado", warmup: [{ n: "Trote + movilidad", t: "6 min" }, { n: "Escalera a impacto bajo", t: "4×20 s" }, { n: "Canastas de fondo de pista", t: "20 min" }], stretches: [{ n: "Cuádriceps", t: "30 s/pierna" }, { n: "Muñeca y antebrazo", t: "20 s/lado" }] },
+              { day: "Martes", focus: "Fuerza general (seco)", warmup: [{ n: "Bici + movilidad", t: "7 min" }, { n: "Sentadilla + peso muerto rumano", t: "3×10" }, { n: "Remo y press goma", t: "3×12" }], stretches: [{ n: "Isquios", t: "30 s" }] },
+              { day: "Miércoles", focus: "Saque controlado", warmup: [{ n: "Movilidad hombro", t: "5 min" }, { n: "Saque con progresión (60–80%)", t: "15 min" }, { n: "Mini-tenis", t: "10 min" }], stretches: [{ n: "Hombro toalla", t: "25 s/brazo" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo o bici", t: "30 min" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Viernes", focus: "Puntos + juego", warmup: [{ n: "Mini-tenis + sombras", t: "10 min" }, { n: "Puntos dobles", t: "30 min" }], stretches: [{ n: "Piernas + hombro", t: "8 min" }] },
+              { day: "Sábado", focus: "Partido", warmup: [{ n: "Calentamiento de match", t: "15 min" }], stretches: [{ n: "Post-partido", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína", "Media mañana": "Yogur", Almuerzo: "Pollo + quinoa", Merienda: "Fruta", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Kéfir", Almuerzo: "Pasta + atún", Merienda: "Té + fruta", Cena: "Crema + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie", "Media mañana": "Almendras", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Pescado + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge", "Media mañana": "Fruta", Almuerzo: "Garbanzos + arroz", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo", "Media mañana": "Yogur", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-partido)", "Media mañana": "Plátano", Almuerzo: "Recuperación", Merienda: "Nueces", Cena: "Social moderada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Ensalada + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Dobles y ritmo controlado: desplazamientos cortos y técnica.",
+            intensity: "Moderada",
+            session: "40–50 min",
+            days: [
+              { day: "Lunes", focus: "Mini-tenis + técnica", warmup: [{ n: "Marcha + movilidad", t: "6 min" }, { n: "Mini-tenis controlado", t: "15 min" }, { n: "Globos de fondo sin sprint", t: "10 min" }], stretches: [{ n: "Muñeca", t: "20 s/lado" }, { n: "Cuádriceps asistido", t: "25 s/pierna" }] },
+              { day: "Martes", focus: "Fuerza de conservación", warmup: [{ n: "Bici suave", t: "6 min" }, { n: "Sentadilla a silla", t: "2×10" }, { n: "Gomas de remo y press", t: "2×12" }], stretches: [{ n: "Isquios con toalla", t: "25 s/pierna" }] },
+              { day: "Miércoles", focus: "Dobles recreativo", warmup: [{ n: "Activación progresiva", t: "10 min" }, { n: "Dobles ritmo cómodo", t: "30 min" }], stretches: [{ n: "Piernas", t: "6 min" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo", t: "30 min" }], stretches: [{ n: "Suave", t: "6 min" }] },
+              { day: "Viernes", focus: "Saques + voleas suaves", warmup: [{ n: "Movilidad hombro", t: "5 min" }, { n: "Saque al 50–60%", t: "10 min" }, { n: "Voleas cortas", t: "10 min" }], stretches: [{ n: "Hombro", t: "25 s/brazo" }] },
+              { day: "Sábado", focus: "Partido de dobles", warmup: [{ n: "Calentamiento", t: "10 min" }], stretches: [{ n: "Post-partido", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena", "Media mañana": "Nueces", Almuerzo: "Merluza + patata", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + AOVE", "Media mañana": "Pera", Almuerzo: "Pollo + verduras", Merienda: "Infusión", Cena: "Lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos", Merienda: "Yogur", Cena: "Tortilla + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Leche + avena", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella suave", Merienda: "Chocolate + nueces", Cena: "Ensalada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      },
+
+      baloncesto: {
+        name: "Baloncesto",
+        icon: "🏀",
+        tagline: "Salto, sprint y coordinación mano-ojo",
+        accent: "#ef4444",
+        color2: "#fca5a5",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Pliometría y tiro: máximo salto vertical y precisión.",
+            intensity: "Muy alta",
+            session: "60–75 min",
+            days: [
+              { day: "Lunes", focus: "Técnica de tiro + bote", warmup: [{ n: "Trote + movilidad de tobillo", t: "5 min" }, { n: "Skipping y talones", t: "2×20 m" }, { n: "Bote a una mano y sin mirar", t: "8 min" }, { n: "Tiro tras bote y parado", t: "15 min" }], stretches: [{ n: "Cuádriceps", t: "30 s/pierna" }, { n: "Muñeca/dedos", t: "20 s/mano" }] },
+              { day: "Martes", focus: "Pliometría + fuerza", warmup: [{ n: "Bici + movilidad", t: "7 min" }, { n: "Saltos a cajón", t: "4×6" }, { n: "Salto con contramovimiento", t: "3×8" }, { n: "Sentadilla y peso muerto rumano", t: "3×10" }], stretches: [{ n: "Isquios", t: "30 s/pierna" }, { n: "Glúteo", t: "30 s/lado" }] },
+              { day: "Miércoles", focus: "Sprints + defensas", warmup: [{ n: "Sprints de línea a línea progresivos", t: "6×20 s" }, { n: "Defensa en deslizamiento lateral", t: "4×30 s" }, { n: "1×1 con compañero", t: "10 min" }], stretches: [{ n: "Aductores", t: "30 s" }, { n: "Psoas zancada", t: "30 s/pierna" }] },
+              { day: "Jueves", focus: "Recuperación + core", warmup: [{ n: "Bici suave", t: "10 min" }, { n: "Plancha, hollow, superman", t: "3 rondas" }], stretches: [{ n: "Yoga suave", t: "10 min" }] },
+              { day: "Viernes", focus: "Tiro bajo fatiga", warmup: [{ n: "Sprints cortos", t: "4×15 s" }, { n: "Tiro tras sprint (tiros libres)", t: "20 min" }, { n: "Triples competitivos", t: "15 min" }], stretches: [{ n: "Global piernas", t: "8 min" }] },
+              { day: "Sábado", focus: "Partido", warmup: [{ n: "Calentamiento de match (tiro + activación)", t: "15 min" }], stretches: [{ n: "Post-partido", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + plátano + leche", "Media mañana": "Fruta + nueces", Almuerzo: "Pollo + arroz + brócoli", Merienda: "Tostada + pavo", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Yogur", Almuerzo: "Pasta + pavo", Merienda: "Batido", Cena: "Tortilla + espinacas" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie + avena", "Media mañana": "Bocadillo", Almuerzo: "Lentejas + verduras", Merienda: "Fruta", Cena: "Merluza + patata" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Plátano", Almuerzo: "Arroz + pollo", Merienda: "Yogur + miel", Cena: "Crema + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Avena + miel", "Media mañana": "Frutos secos", Almuerzo: "Wrap atún", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Sábado", meals: { Desayuno: "Avena + plátano (pre-partido)", "Media mañana": "Gel o fruta", Almuerzo: "Recuperación", Merienda: "Yogur", Cena: "Pizza integral" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Paella", Merienda: "Nueces", Cena: "Ensalada + atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Rodillas protegidas: menos pliometría, más fuerza y tiro.",
+            intensity: "Media-alta",
+            session: "50–60 min",
+            days: [
+              { day: "Lunes", focus: "Tiro + bote", warmup: [{ n: "Trote + movilidad", t: "6 min" }, { n: "Bote estático y en movimiento", t: "8 min" }, { n: "Tiro de campo cómodo", t: "15 min" }], stretches: [{ n: "Cuádriceps", t: "30 s/pierna" }] },
+              { day: "Martes", focus: "Fuerza (seco)", warmup: [{ n: "Bici + movilidad", t: "7 min" }, { n: "Sentadilla goblet + zancada", t: "3×10" }, { n: "Press y remo goma", t: "3×12" }], stretches: [{ n: "Isquios", t: "30 s" }] },
+              { day: "Miércoles", focus: "Juego 3×3", warmup: [{ n: "Activación + tiro", t: "10 min" }, { n: "3×3 medio ritmo", t: "25 min" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo o bici", t: "30 min" }], stretches: [{ n: "Movilidad", t: "8 min" }] },
+              { day: "Viernes", focus: "Agilidad + tiro", warmup: [{ n: "Escalera a impacto bajo", t: "4×20 s" }, { n: "Tiro tras desplazamiento", t: "20 min" }], stretches: [{ n: "Piernas", t: "8 min" }] },
+              { day: "Sábado", focus: "Partido", warmup: [{ n: "Calentamiento", t: "12 min" }], stretches: [{ n: "Post-partido", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína", "Media mañana": "Yogur", Almuerzo: "Pollo + arroz", Merienda: "Fruta", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Kéfir", Almuerzo: "Pasta + atún", Merienda: "Té + fruta", Cena: "Crema + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie", "Media mañana": "Almendras", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Pescado + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge", "Media mañana": "Fruta", Almuerzo: "Garbanzos", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo", "Media mañana": "Yogur", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-partido)", "Media mañana": "Plátano", Almuerzo: "Recuperación", Merienda: "Nueces", Cena: "Social" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Ensalada + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Versión senior: tiro, pase y movilidad sin saltos.",
+            intensity: "Moderada",
+            session: "40–50 min",
+            days: [
+              { day: "Lunes", focus: "Tiro estático y pase", warmup: [{ n: "Marcha + movilidad", t: "6 min" }, { n: "Tiro parado en zona", t: "12 min" }, { n: "Pase en estático con compañero", t: "10 min" }], stretches: [{ n: "Muñeca", t: "20 s" }, { n: "Hombro", t: "20 s/lado" }] },
+              { day: "Martes", focus: "Fuerza conservación", warmup: [{ n: "Bici suave", t: "6 min" }, { n: "Sentadilla a silla", t: "2×10" }, { n: "Elevación de talones", t: "2×12" }], stretches: [{ n: "Gemelo", t: "25 s/pierna" }] },
+              { day: "Miércoles", focus: "Movilidad + equilibrio", warmup: [{ n: "Apoyo monopodal", t: "3×20 s/pierna" }, { n: "Bote caminando", t: "8 min" }], stretches: [{ n: "Cadena posterior", t: "25 s" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo", t: "30 min" }], stretches: [{ n: "Suave", t: "6 min" }] },
+              { day: "Viernes", focus: "Juego tranquilo (tiros y pases)", warmup: [{ n: "Activación", t: "8 min" }, { n: "Tiros y pases en movimiento suave", t: "20 min" }], stretches: [{ n: "Global", t: "6 min" }] },
+              { day: "Sábado", focus: "Actividad recreativa", warmup: [{ n: "Bici o caminata", t: "30 min" }], stretches: [{ n: "Suave", t: "6 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena", "Media mañana": "Nueces", Almuerzo: "Merluza + patata", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + AOVE", "Media mañana": "Pera", Almuerzo: "Pollo + verduras", Merienda: "Infusión", Cena: "Lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos", Merienda: "Yogur", Cena: "Tortilla + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Leche + avena", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella suave", Merienda: "Chocolate + nueces", Cena: "Ensalada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      },
+
+      karate: {
+        name: "Karate",
+        icon: "🥋",
+        tagline: "Kihon, kata y kumite — técnica, equilibrio y foco",
+        accent: "#8b5cf6",
+        color2: "#c4b5fd",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Repetición técnica y explosividad en kumite.",
+            intensity: "Alta",
+            session: "60–70 min",
+            days: [
+              { day: "Lunes", focus: "Kihon (técnicas básicas)", warmup: [{ n: "Trote + movilidad articular", t: "6 min" }, { n: "Estiramientos dinámicos de pierna", t: "4 min" }, { n: "Kihon: tsuki, uke, geri en posición", t: "20 min" }, { n: "Desplazamientos en kiba-dachi / zenkutsu-dachi", t: "8 min" }], stretches: [{ n: "Aductores en mariposa", t: "40 s" }, { n: "Cuádriceps", t: "30 s/pierna" }] },
+              { day: "Martes", focus: "Kata", warmup: [{ n: "Movilidad + saltos suaves", t: "6 min" }, { n: "Kata lenta por secciones", t: "15 min" }, { n: "Kata a ritmo real ×3", t: "15 min" }, { n: "Bunkai (aplicación) en parejas", t: "10 min" }], stretches: [{ n: "Cadena posterior", t: "30 s" }, { n: "Cadera 90/90", t: "30 s/lado" }] },
+              { day: "Miércoles", focus: "Fuerza + pliometría", warmup: [{ n: "Cuerda + movilidad", t: "7 min" }, { n: "Sentadilla, zancada, salto al cajón", t: "4×8" }, { n: "Flexiones y dominadas", t: "3×8–10" }, { n: "Core (plancha, hollow)", t: "3×40 s" }], stretches: [{ n: "Isquios", t: "30 s/pierna" }, { n: "Pecho", t: "30 s" }] },
+              { day: "Jueves", focus: "Movilidad + flexibilidad", warmup: [{ n: "Yoga / movilidad completa", t: "20 min" }, { n: "Patadas asistidas progresivas", t: "10 min" }], stretches: [{ n: "Spagat progresivo asistido", t: "3×30 s/lado" }] },
+              { day: "Viernes", focus: "Kumite", warmup: [{ n: "Sombras + desplazamientos", t: "8 min" }, { n: "Trabajo de distancia y timing", t: "15 min" }, { n: "Kumite dirigido y libre", t: "20 min" }], stretches: [{ n: "Global piernas", t: "8 min" }] },
+              { day: "Sábado", focus: "Clase o competición", warmup: [{ n: "Calentamiento de club", t: "15 min" }], stretches: [{ n: "Post-sesión", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + plátano", "Media mañana": "Fruta + nueces", Almuerzo: "Pollo + arroz + verduras", Merienda: "Tostada + pavo", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Yogur", Almuerzo: "Pasta + pavo", Merienda: "Batido", Cena: "Tortilla + espinacas" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie + avena", "Media mañana": "Bocadillo", Almuerzo: "Lentejas", Merienda: "Fruta", Cena: "Merluza + patata" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Plátano", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Avena + miel", "Media mañana": "Frutos secos", Almuerzo: "Wrap atún", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-clase)", "Media mañana": "Fruta", Almuerzo: "Recuperación", Merienda: "Yogur", Cena: "Pizza integral" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Paella", Merienda: "Nueces", Cena: "Ensalada + atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Técnica y movilidad: reducir impacto de saltos y de la cuerda.",
+            intensity: "Media",
+            session: "50–60 min",
+            days: [
+              { day: "Lunes", focus: "Kihon técnico", warmup: [{ n: "Trote + movilidad", t: "6 min" }, { n: "Kihon a ritmo controlado", t: "18 min" }, { n: "Desplazamientos", t: "6 min" }], stretches: [{ n: "Mariposa", t: "40 s" }, { n: "Cuádriceps", t: "30 s/pierna" }] },
+              { day: "Martes", focus: "Kata + bunkai", warmup: [{ n: "Movilidad", t: "6 min" }, { n: "Kata por secciones y completo", t: "25 min" }], stretches: [{ n: "Cadera", t: "30 s/lado" }] },
+              { day: "Miércoles", focus: "Fuerza moderada", warmup: [{ n: "Cuerda suave", t: "5 min" }, { n: "Sentadilla + zancada + core", t: "3×10" }], stretches: [{ n: "Isquios", t: "30 s" }] },
+              { day: "Jueves", focus: "Movilidad", warmup: [{ n: "Yoga suave + patadas controladas", t: "25 min" }], stretches: [{ n: "Spagat progresivo", t: "2×30 s/lado" }] },
+              { day: "Viernes", focus: "Kumite controlado", warmup: [{ n: "Sombras", t: "6 min" }, { n: "Kumite dirigido (sin contacto fuerte)", t: "20 min" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Sábado", focus: "Clase", warmup: [{ n: "Calentamiento de club", t: "15 min" }], stretches: [{ n: "Post-sesión", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína", "Media mañana": "Yogur", Almuerzo: "Pollo + quinoa", Merienda: "Fruta", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Kéfir", Almuerzo: "Pasta + atún", Merienda: "Té + fruta", Cena: "Crema + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie", "Media mañana": "Almendras", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Pescado + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge", "Media mañana": "Fruta", Almuerzo: "Garbanzos", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo", "Media mañana": "Yogur", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-clase)", "Media mañana": "Fruta", Almuerzo: "Recuperación", Merienda: "Nueces", Cena: "Social" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Ensalada + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Karate saludable: kihon suave, kata y equilibrio, kumite opcional.",
+            intensity: "Suave-moderada",
+            session: "40–50 min",
+            days: [
+              { day: "Lunes", focus: "Kihon suave", warmup: [{ n: "Marcha + movilidad articular", t: "8 min" }, { n: "Tsuki y uke lentos en posición alta", t: "15 min" }], stretches: [{ n: "Mariposa suave", t: "30 s" }, { n: "Hombro", t: "20 s/lado" }] },
+              { day: "Martes", focus: "Equilibrio + desplazamientos", warmup: [{ n: "Apoyo monopodal asistido", t: "3×20 s/pierna" }, { n: "Desplazamientos lentos en dachi", t: "10 min" }], stretches: [{ n: "Gemelo", t: "25 s/pierna" }] },
+              { day: "Miércoles", focus: "Kata", warmup: [{ n: "Movilidad", t: "6 min" }, { n: "Kata lento por secciones", t: "20 min" }], stretches: [{ n: "Cadera suave", t: "25 s/lado" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo", t: "30 min" }], stretches: [{ n: "Suave", t: "6 min" }] },
+              { day: "Viernes", focus: "Fuerza suave + core", warmup: [{ n: "Sentadilla a silla", t: "2×10" }, { n: "Gomas", t: "2×12" }, { n: "Core en silla/pared", t: "3×20 s" }], stretches: [{ n: "Cadena posterior", t: "25 s" }] },
+              { day: "Sábado", focus: "Clase adaptada", warmup: [{ n: "Calentamiento guiado", t: "10 min" }], stretches: [{ n: "Post-sesión", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena", "Media mañana": "Nueces", Almuerzo: "Merluza + patata", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + AOVE", "Media mañana": "Pera", Almuerzo: "Pollo + verduras", Merienda: "Infusión", Cena: "Lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos", Merienda: "Yogur", Cena: "Tortilla + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Leche + avena", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella suave", Merienda: "Chocolate + nueces", Cena: "Ensalada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      },
+
+      boxeo: {
+        name: "Boxeo",
+        icon: "🥊",
+        tagline: "Cardio, coordinación y potencia de golpeo",
+        accent: "#eab308",
+        color2: "#fde047",
+        routine: {
+          joven: {
+            label: "10–30 años",
+            note: "Cuerda, saco y sparring técnico: máximo volumen de trabajo.",
+            intensity: "Muy alta",
+            session: "60–75 min",
+            days: [
+              { day: "Lunes", focus: "Técnica de golpeo", warmup: [{ n: "Cuerda", t: "8 min" }, { n: "Movilidad de hombro y cadera", t: "5 min" }, { n: "Shadow boxing (combinaciones 1–2–3)", t: "3×3 min" }, { n: "Saco técnico: jab y cruz", t: "5×3 min" }], stretches: [{ n: "Hombro cruzado", t: "30 s/brazo" }, { n: "Muñeca", t: "20 s/mano" }] },
+              { day: "Martes", focus: "Cardio + core", warmup: [{ n: "Cuerda", t: "6 min" }, { n: "HIIT 40/20 (burpees, mountain climbers)", t: "15 min" }, { n: "Core (plancha, russian twist)", t: "3 rondas" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Miércoles", focus: "Saco + potencia", warmup: [{ n: "Cuerda", t: "6 min" }, { n: "Saco pesado por rondas", t: "6×3 min" }, { n: "Golpes de potencia (ganchos y uppercuts)", t: "4×2 min" }], stretches: [{ n: "Pecho", t: "30 s" }, { n: "Tríceps", t: "25 s/brazo" }] },
+              { day: "Jueves", focus: "Fuerza", warmup: [{ n: "Bici + movilidad", t: "8 min" }, { n: "Sentadilla + peso muerto rumano", t: "4×8" }, { n: "Press militar + remo", t: "3×10" }, { n: "Core antirrotación", t: "3×10" }], stretches: [{ n: "Isquios", t: "30 s" }, { n: "Glúteo", t: "30 s/lado" }] },
+              { day: "Viernes", focus: "Sparring técnico", warmup: [{ n: "Cuerda + sombras", t: "10 min" }, { n: "Sparring ligero con focos", t: "6×3 min" }, { n: "Focos de precisión", t: "4×3 min" }], stretches: [{ n: "Cuello y trapecio", t: "20 s/lado" }, { n: "Global", t: "5 min" }] },
+              { day: "Sábado", focus: "Clase o combate", warmup: [{ n: "Calentamiento de club", t: "15 min" }], stretches: [{ n: "Post-sesión", t: "10 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + plátano + huevos", "Media mañana": "Fruta + nueces", Almuerzo: "Pollo + arroz + verduras", Merienda: "Tostada + pavo", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Tostadas + huevo", "Media mañana": "Yogur", Almuerzo: "Pasta + pavo", Merienda: "Batido", Cena: "Tortilla + espinacas" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie + avena", "Media mañana": "Bocadillo", Almuerzo: "Lentejas", Merienda: "Fruta", Cena: "Merluza + patata" } },
+              { day: "Jueves", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Plátano", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Viernes", meals: { Desayuno: "Avena + miel", "Media mañana": "Frutos secos", Almuerzo: "Wrap atún", Merienda: "Yogur", Cena: "Pasta + pollo" } },
+              { day: "Sábado", meals: { Desayuno: "Avena (pre-entreno)", "Media mañana": "Fruta", Almuerzo: "Recuperación", Merienda: "Yogur", Cena: "Pizza integral" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Paella", Merienda: "Nueces", Cena: "Ensalada + atún" } }
+            ]
+          },
+          adulto: {
+            label: "30–50 años",
+            note: "Boxeo fitness: rondas técnicas sin castigo, más movilidad.",
+            intensity: "Media-alta",
+            session: "45–60 min",
+            days: [
+              { day: "Lunes", focus: "Técnica + sombras", warmup: [{ n: "Cuerda suave", t: "5 min" }, { n: "Shadow boxing técnico", t: "3×2 min" }, { n: "Saco ligero", t: "4×2 min" }], stretches: [{ n: "Hombro", t: "30 s/brazo" }] },
+              { day: "Martes", focus: "Cardio + core", warmup: [{ n: "Bici", t: "5 min" }, { n: "Circuito (cuerda, burpees, core)", t: "3 rondas" }], stretches: [{ n: "Global", t: "8 min" }] },
+              { day: "Miércoles", focus: "Fuerza moderada", warmup: [{ n: "Movilidad", t: "6 min" }, { n: "Sentadilla + RDL + press", t: "3×10" }], stretches: [{ n: "Isquios", t: "30 s" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo o bici", t: "30 min" }], stretches: [{ n: "Movilidad", t: "8 min" }] },
+              { day: "Viernes", focus: "Saco + focos", warmup: [{ n: "Cuerda", t: "5 min" }, { n: "Saco por rondas", t: "5×2 min" }, { n: "Focos", t: "3×2 min" }], stretches: [{ n: "Cuello", t: "20 s/lado" }] },
+              { day: "Sábado", focus: "Clase o sparring suave", warmup: [{ n: "Calentamiento", t: "10 min" }], stretches: [{ n: "Post", t: "8 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "25 min" }], stretches: [{ n: "Suave", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Avena + proteína", "Media mañana": "Yogur", Almuerzo: "Pollo + quinoa", Merienda: "Fruta", Cena: "Salmón + ensalada" } },
+              { day: "Martes", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Kéfir", Almuerzo: "Pasta + atún", Merienda: "Té + fruta", Cena: "Crema + tortilla" } },
+              { day: "Miércoles", meals: { Desayuno: "Smoothie", "Media mañana": "Almendras", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Pescado + verduras" } },
+              { day: "Jueves", meals: { Desayuno: "Porridge", "Media mañana": "Fruta", Almuerzo: "Garbanzos", Merienda: "Cottage", Cena: "Pollo + calabacín" } },
+              { day: "Viernes", meals: { Desayuno: "Tostadas + pavo", "Media mañana": "Yogur", Almuerzo: "Quinoa + salmón", Merienda: "Fruta", Cena: "Tortilla + ensalada" } },
+              { day: "Sábado", meals: { Desayuno: "Avena", "Media mañana": "Fruta", Almuerzo: "Recuperación", Merienda: "Nueces", Cena: "Social" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostadas", "Media mañana": "Fruta", Almuerzo: "Arroz + pollo", Merienda: "Yogur", Cena: "Ensalada + atún" } }
+            ]
+          },
+          mayor: {
+            label: "50–70 años",
+            note: "Boxeo senior: sombras, bolsa suave y mucha movilidad. Sin sparring.",
+            intensity: "Suave-moderada",
+            session: "35–45 min",
+            days: [
+              { day: "Lunes", focus: "Sombras + técnica", warmup: [{ n: "Marcha + movilidad", t: "6 min" }, { n: "Shadow boxing lento (técnica y respiración)", t: "3×2 min" }], stretches: [{ n: "Hombro suave", t: "25 s/brazo" }] },
+              { day: "Martes", focus: "Cuerda o marcha + core", warmup: [{ n: "Cuerda de pie o marcha rápida", t: "12 min" }, { n: "Core en silla/pared", t: "3×20 s" }], stretches: [{ n: "Gemelo", t: "25 s/pierna" }] },
+              { day: "Miércoles", focus: "Bolsa suave", warmup: [{ n: "Movilidad", t: "5 min" }, { n: "Bolsa ligera sin potencia", t: "4×2 min" }], stretches: [{ n: "Muñeca y mano", t: "20 s" }] },
+              { day: "Jueves", focus: "Descanso activo", warmup: [{ n: "Paseo", t: "30 min" }], stretches: [{ n: "Suave", t: "6 min" }] },
+              { day: "Viernes", focus: "Fuerza suave", warmup: [{ n: "Gomas + sentadilla a silla", t: "10 min" }, { n: "Core", t: "3×20 s" }], stretches: [{ n: "Global", t: "6 min" }] },
+              { day: "Sábado", focus: "Clase adaptada", warmup: [{ n: "Calentamiento guiado", t: "8 min" }], stretches: [{ n: "Post", t: "6 min" }] },
+              { day: "Domingo", focus: "Descanso", warmup: [{ n: "Paseo", t: "20 min" }], stretches: [{ n: "Respiración", t: "5 min" }] }
+            ],
+            diet: [
+              { day: "Lunes", meals: { Desayuno: "Kéfir + avena", "Media mañana": "Nueces", Almuerzo: "Merluza + patata", Merienda: "Yogur", Cena: "Crema + tortilla" } },
+              { day: "Martes", meals: { Desayuno: "Tostada + AOVE", "Media mañana": "Pera", Almuerzo: "Pollo + verduras", Merienda: "Infusión", Cena: "Lentejas" } },
+              { day: "Miércoles", meals: { Desayuno: "Avena + manzana", "Media mañana": "Yogur", Almuerzo: "Salmón + quinoa", Merienda: "Fruta", Cena: "Sopa + pescado" } },
+              { day: "Jueves", meals: { Desayuno: "Huevo + tostada", "Media mañana": "Mandarina", Almuerzo: "Garbanzos", Merienda: "Yogur", Cena: "Tortilla + ensalada" } },
+              { day: "Viernes", meals: { Desayuno: "Leche + avena", "Media mañana": "Almendras", Almuerzo: "Arroz + pavo", Merienda: "Fruta", Cena: "Puré + dorada" } },
+              { day: "Sábado", meals: { Desayuno: "Tostadas + zumo", "Media mañana": "Yogur", Almuerzo: "Paella suave", Merienda: "Chocolate + nueces", Cena: "Ensalada" } },
+              { day: "Domingo", meals: { Desayuno: "Huevos + tostada", "Media mañana": "Fruta", Almuerzo: "Cocido ligero", Merienda: "Infusión", Cena: "Crema + pescado" } }
+            ]
+          }
+        }
+      }
+    };
+  </script>
+
+  <script>
+    /* ============================================================
+       AUTH — Registro e inicio de sesión con localStorage.
+       Demo only: las contraseñas se guardan con un hash simple.
+       ============================================================ */
+    const Auth = (() => {
+      const USERS_KEY = "pulsufit_users";
+      const SESSION_KEY = "pulsufit_session";
+
+      // Hash simple (djb2). NO es seguridad real, solo evita texto plano.
+      function hash(str) {
+        let h = 5381;
+        for (let i = 0; i < str.length; i++) {
+          h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+        }
+        return "h" + (h >>> 0).toString(36);
+      }
+
+      function loadUsers() {
+        try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; }
+        catch { return {}; }
+      }
+
+      function saveUsers(users) {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      }
+
+      function register({ username, password, sport, age }) {
+        const users = loadUsers();
+        const name = username.trim();
+
+        if (name.length < 3) return { ok: false, error: "El nombre de usuario necesita al menos 3 caracteres." };
+        if (!/^[a-zA-Z0-9_.-]+$/.test(name)) return { ok: false, error: "El usuario solo puede tener letras, números, punto, guion y guion bajo." };
+        if (password.length < 4) return { ok: false, error: "La contraseña necesita al menos 4 caracteres." };
+        if (users[name.toLowerCase()]) return { ok: false, error: "Ese nombre de usuario ya existe. Prueba otro." };
+
+        users[name.toLowerCase()] = {
+          username: name,
+          pass: hash(password),
+          sport: sport || null,
+          age: age || null,
+          createdAt: Date.now()
+        };
+        saveUsers(users);
+        return login(name, password);
+      }
+
+      function login(username, password) {
+        const users = loadUsers();
+        const user = users[String(username).trim().toLowerCase()];
+        if (!user) return { ok: false, error: "Usuario no encontrado. ¿Quieres crear una cuenta?" };
+        if (user.pass !== hash(password)) return { ok: false, error: "Contraseña incorrecta." };
+
+        const session = { username: user.username, sport: user.sport, age: user.age };
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+        return { ok: true, user: session };
+      }
+
+      function logout() {
+        localStorage.removeItem(SESSION_KEY);
+      }
+
+      function currentUser() {
+        try { return JSON.parse(localStorage.getItem(SESSION_KEY)); }
+        catch { return null; }
+      }
+
+      function updatePrefs({ sport, age }) {
+        const session = currentUser();
+        if (!session) return;
+        session.sport = sport;
+        session.age = age;
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+
+        const users = loadUsers();
+        const key = session.username.toLowerCase();
+        if (users[key]) {
+          users[key].sport = sport;
+          users[key].age = age;
+          saveUsers(users);
+        }
+      }
+
+      return { register, login, logout, currentUser, updatePrefs };
+    })();
+  </script>
+
+  <script>
+    /* ============================================================
+       APP — Render, navegación, tabs de edad y vista rutina/dieta.
+       ============================================================ */
+    (function () {
+      "use strict";
+
+      const SPORT_KEYS = Object.keys(DATA);
+      const $ = (id) => document.getElementById(id);
+
+      let currentSport = null;
+      let currentAge = "joven";
+      let currentView = "routine";
+
+      /* =================== AUTH UI =================== */
+      const authOverlay = $("authOverlay");
+      const loginForm = $("loginForm");
+      const registerForm = $("registerForm");
+      const authProfile = $("authProfile");
+      const navAuthBtn = $("navAuthBtn");
+      const navCtaBtn = $("navCtaBtn");
+      const heroCta = $("heroCta");
+
+      function openAuth(tab) {
+        authOverlay.hidden = false;
+        document.body.style.overflow = "hidden";
+        if (Auth.currentUser()) showProfile();
+        else showAuthForm(tab || "login");
+      }
+
+      function closeAuth() {
+        authOverlay.hidden = true;
+        document.body.style.overflow = "";
+      }
+
+      function showAuthForm(tab) {
+        document.querySelectorAll(".auth-tab").forEach((t) => {
+          t.classList.toggle("active", t.dataset.auth === tab);
+          t.style.display = "";
+        });
+        loginForm.hidden = tab !== "login";
+        registerForm.hidden = tab !== "register";
+        authProfile.hidden = true;
+        $("loginError").hidden = true;
+        $("regError").hidden = true;
+      }
+
+      function showProfile() {
+        const user = Auth.currentUser();
+        if (!user) return;
+        document.querySelectorAll(".auth-tab").forEach((t) => (t.style.display = "none"));
+        loginForm.hidden = true;
+        registerForm.hidden = true;
+        authProfile.hidden = false;
+
+        $("profileName").textContent = user.username;
+        $("profileAvatar").textContent = user.username.charAt(0).toUpperCase();
+        const sportName = user.sport && DATA[user.sport] ? DATA[user.sport].name : "—";
+        const ageLabel = user.age && user.sport && DATA[user.sport] ? DATA[user.sport].routine[user.age].label : "—";
+        $("profileMeta").textContent = `Deporte: ${sportName} · Edad: ${ageLabel}`;
+
+        fillSportSelect($("prefSport"), user.sport || "futbol");
+        $("prefAge").value = user.age || "joven";
+      }
+
+      navAuthBtn.addEventListener("click", () => openAuth("login"));
+      navCtaBtn.addEventListener("click", () => openAuth("register"));
+      heroCta.addEventListener("click", () => {
+        const user = Auth.currentUser();
+        if (user && user.sport) openSport(user.sport, user.age || "joven");
+        else if (user) { showProfile(); openAuth("login"); }
+        else openAuth("register");
+      });
+      $("authClose").addEventListener("click", closeAuth);
+      authOverlay.addEventListener("click", (e) => { if (e.target === authOverlay) closeAuth(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !authOverlay.hidden) closeAuth(); });
+
+      document.querySelectorAll(".auth-tab").forEach((tab) => {
+        tab.addEventListener("click", () => showAuthForm(tab.dataset.auth));
+      });
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const res = Auth.login($("loginUser").value, $("loginPass").value);
+        if (!res.ok) {
+          const err = $("loginError");
+          err.textContent = res.error;
+          err.hidden = false;
+          return;
+        }
+        loginForm.reset();
+        showProfile();
+        refreshNavAuth();
+      });
+
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const pass = $("regPass").value;
+        const pass2 = $("regPass2").value;
+        const errEl = $("regError");
+
+        const fail = (msg) => { errEl.textContent = msg; errEl.hidden = false; };
+        errEl.hidden = true;
+
+        if (pass !== pass2) return fail("Las contraseñas no coinciden.");
+
+        const res = Auth.register({
+          username: $("regUser").value,
+          password: pass,
+          sport: $("regSport").value,
+          age: $("regAge").value
+        });
+        if (!res.ok) return fail(res.error);
+
+        registerForm.reset();
+        showProfile();
+        refreshNavAuth();
+      });
+
+      $("logoutBtn").addEventListener("click", () => {
+        Auth.logout();
+        showAuthForm("login");
+        refreshNavAuth();
+      });
+
+      $("goMyPlan").addEventListener("click", () => {
+        const sport = $("prefSport").value;
+        const age = $("prefAge").value;
+        Auth.updatePrefs({ sport, age });
+        refreshNavAuth();
+        closeAuth();
+        openSport(sport, age);
+      });
+
+      $("prefSport").addEventListener("change", () => {
+        Auth.updatePrefs({ sport: $("prefSport").value, age: $("prefAge").value });
+        refreshNavAuth();
+      });
+      $("prefAge").addEventListener("change", () => {
+        Auth.updatePrefs({ sport: $("prefSport").value, age: $("prefAge").value });
+        refreshNavAuth();
+      });
+
+      function refreshNavAuth() {
+        const user = Auth.currentUser();
+        if (user) {
+          navAuthBtn.textContent = `👤 ${user.username}`;
+          navCtaBtn.textContent = "Mi plan";
+        } else {
+          navAuthBtn.textContent = "Iniciar sesión";
+          navCtaBtn.textContent = "Empezar gratis";
+        }
+      }
+
+      function fillSportSelect(select, selected) {
+        select.innerHTML = SPORT_KEYS
+          .map((k) => `<option value="${k}" ${k === selected ? "selected" : ""}>${DATA[k].icon} ${DATA[k].name}</option>`)
+          .join("");
+      }
+
+      /* =================== SPORTS GRID =================== */
+      function renderSports() {
+        const grid = $("sportsGrid");
+        grid.innerHTML = SPORT_KEYS.map((key) => {
+          const s = DATA[key];
+          return `
+            <button class="sport-card reveal" data-sport="${key}" style="--glow:${hexGlow(s.accent)}">
+              <span class="sport-card-icon">${s.icon}</span>
+              <h3>${s.name}</h3>
+              <p>${s.tagline}</p>
+              <span class="card-cta">Ver rutina y dieta →</span>
+            </button>`;
+        }).join("");
+
+        grid.querySelectorAll(".sport-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const user = Auth.currentUser();
+            openSport(card.dataset.sport, (user && user.age) || "joven");
+          });
+        });
+        observeReveals();
+      }
+
+      function hexGlow(hex) {
+        const n = parseInt(hex.slice(1), 16);
+        const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+        return `rgba(${r},${g},${b},0.16)`;
+      }
+
+      /* =================== DETAIL =================== */
+      function openSport(key, age) {
+        currentSport = key;
+        currentAge = age || "joven";
+        const s = DATA[key];
+
+        ["sports", "how", "faq"].forEach((id) => { $(id).hidden = true; });
+        $("detail").hidden = false;
+
+        document.documentElement.style.setProperty("--sport-a", s.accent);
+        document.documentElement.style.setProperty("--sport-b", s.color2);
+        document.documentElement.style.setProperty("--sport-glow", hexGlow(s.accent));
+        document.documentElement.style.setProperty("--sport-soft", hexGlow(s.accent));
+
+        $("detailIcon").textContent = s.icon;
+        $("detailTitle").textContent = s.name;
+        $("detailTagline").textContent = s.tagline;
+
+        document.querySelectorAll(".age-tab").forEach((t) => {
+          t.classList.toggle("active", t.dataset.age === currentAge);
+        });
+
+        setView("routine");
+        renderAgeSummary();
+
+        $("detail").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function backToSports() {
+        $("detail").hidden = true;
+        ["sports", "how", "faq"].forEach((id) => { $(id).hidden = false; });
+        window.scrollTo({ top: $("sports").offsetTop - 70, behavior: "smooth" });
+      }
+      $("backBtn").addEventListener("click", backToSports);
+
+      document.querySelectorAll(".age-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          currentAge = tab.dataset.age;
+          document.querySelectorAll(".age-tab").forEach((t) => t.classList.toggle("active", t === tab));
+          renderAgeSummary();
+          renderView();
+        });
+      });
+
+      document.querySelectorAll(".view-tab").forEach((tab) => {
+        tab.addEventListener("click", () => setView(tab.dataset.view));
+      });
+
+      function setView(view) {
+        currentView = view;
+        document.querySelectorAll(".view-tab").forEach((t) => {
+          t.classList.toggle("active", t.dataset.view === view);
+        });
+        $("daysGrid").hidden = view !== "routine";
+        $("dietWrap").hidden = view !== "diet";
+        renderView();
+      }
+
+      function renderAgeSummary() {
+        const r = DATA[currentSport].routine[currentAge];
+        $("ageSummary").innerHTML =
+          `<strong>${r.label}</strong> · Intensidad: <strong>${r.intensity}</strong> · Sesión: <strong>${r.session}</strong><br>${r.note}`;
+      }
+
+      function renderView() {
+        if (!currentSport) return;
+        const plan = DATA[currentSport].routine[currentAge];
+        if (currentView === "routine") renderDays(plan.days);
+        else renderDiet(plan.diet);
+      }
+
+      function renderDays(days) {
+        $("daysGrid").innerHTML = days.map((d, i) => {
+          const warmItems = (d.warmup || [])
+            .map((ex) => `<li><span>${ex.n}</span><span class="ex-t">${ex.t}</span></li>`)
+            .join("");
+          const stretchItems = (d.stretches || [])
+            .map((ex) => `<li><span>${ex.n}</span><span class="ex-t">${ex.t}</span></li>`)
+            .join("");
+          return `
+            <article class="day-card reveal" style="transition-delay:${Math.min(i * 40, 240)}ms">
+              <div class="day-head">
+                <span class="day-name">${d.day}</span>
+                <span class="day-focus">${d.focus}</span>
+              </div>
+              <div>
+                <h4>🔥 Calentamiento</h4>
+                <ul class="ex-list">${warmItems}</ul>
+              </div>
+              <div>
+                <h4>🧘 Estiramientos</h4>
+                <ul class="ex-list">${stretchItems}</ul>
+              </div>
+            </article>`;
+        }).join("");
+        observeReveals();
+      }
+
+      function renderDiet(diet) {
+        $("dietGrid").innerHTML = diet.map((d, i) => {
+          const meals = Object.entries(d.meals)
+            .map(([k, v]) => `<li><span class="meal-k">${k}</span><span>${v}</span></li>`)
+            .join("");
+          return `
+            <article class="day-card reveal" style="transition-delay:${Math.min(i * 40, 240)}ms">
+              <div class="day-head">
+                <span class="day-name">${d.day}</span>
+                <span class="day-focus">Dieta</span>
+              </div>
+              <ul class="meal-list">${meals}</ul>
+            </article>`;
+        }).join("");
+        observeReveals();
+      }
+
+      /* =================== REVEAL ON SCROLL =================== */
+      let observer;
+      function observeReveals() {
+        if (!observer) {
+          observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+        }
+        document.querySelectorAll(".reveal:not(.visible)").forEach((el) => observer.observe(el));
+      }
+
+      /* =================== NAV MISC =================== */
+      const hamburger = $("hamburger");
+      const navLinks = $("navLinks");
+      hamburger.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", open);
+      });
+      navLinks.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          if (!$("detail").hidden) backToSports();
+        });
+      });
+
+      /* =================== INIT =================== */
+      fillSportSelect($("regSport"), "futbol");
+      refreshNavAuth();
+      renderSports();
+    })();
+  </script>
+
+  <script>
+    /* ============================================================
+       CHATBOT — "Coach IA" (local, sin backend): entiende intenciones,
+       usa tus preferencias (deporte + edad) y responde con datos reales.
+       ============================================================ */
+    (function () {
+      "use strict";
+
+      const $ = (id) => document.getElementById(id);
+
+      const fab = $("chatFab");
+      const win = $("chatWindow");
+      const closeBtn = $("chatClose");
+      const messages = $("chatMessages");
+      const form = $("chatForm");
+      const input = $("chatText");
+      const quick = $("chatQuick");
+
+      let opened = false;
+
+      fab.addEventListener("click", () => {
+        win.hidden = !win.hidden;
+        if (!win.hidden) {
+          if (!opened) {
+            opened = true;
+            botGreeting();
+          }
+          setTimeout(() => input.focus(), 150);
+        }
+      });
+      closeBtn.addEventListener("click", () => { win.hidden = true; });
+
+      function addMsg(text, who) {
+        const el = document.createElement("div");
+        el.className = `msg ${who}`;
+        el.textContent = text;
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+        return el;
+      }
+
+      function botGreeting() {
+        const user = Auth.currentUser();
+        const name = user ? ` ${user.username}` : "";
+        addMsg(
+          `¡Hola${name}! Soy tu Coach IA de Fadex 🤖💪\n\nPuedo ayudarte con rutinas, calentamientos, estiramientos y dieta para los 7 deportes de la web y los 3 grupos de edad (10–30, 30–50, 50–70 años).\n\n¿Qué quieres saber? Puedes escribirme o usar los botones de abajo.`,
+          "bot"
+        );
+      }
+
+      function showTyping() {
+        const t = addMsg("Escribiendo...", "bot typing");
+        let dots = 0;
+        const iv = setInterval(() => {
+          dots = (dots + 1) % 4;
+          t.textContent = "Escribiendo" + ".".repeat(dots);
+        }, 220);
+        return () => { clearInterval(iv); t.remove(); };
+      }
+
+      function botReply(text) {
+        const hideTyping = showTyping();
+        const delay = 450 + Math.random() * 550;
+        setTimeout(() => {
+          hideTyping();
+          const answer = getAnswer(text);
+          addMsg(answer, "bot");
+        }, delay);
+      }
+
+      function sportName(key) { return DATA[key].name; }
+
+      function textNorm(s) {
+        return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function detectSport(lowerText) {
+        const map = {
+          futbol: ["futbol", "football", "balompie"],
+          gimnasio: ["gimnasio", "gym", "pesas", "musculacion", "fuerza"],
+          natacion: ["natacion", "nadar", "piscina", "nata"],
+          tenis: ["tenis"],
+          baloncesto: ["baloncesto", "basket", "basquet"],
+          karate: ["karate", "karateca"],
+          boxeo: ["boxeo", "box"]
+        };
+        for (const key of Object.keys(map)) {
+          if (map[key].some((w) => lowerText.includes(w))) return key;
+        }
+        return null;
+      }
+
+      function detectAge(lowerText) {
+        if (/(10|joven|adolescen|menos de 30)/.test(lowerText)) return "joven";
+        if (/(40|30 a 50|mediana)/.test(lowerText)) return "adulto";
+        if (/(60|70|mayor|senior|tercera edad)/.test(lowerText)) return "mayor";
+        return null;
+      }
+
+      function ctxFromMessage(rawText) {
+        const user = Auth.currentUser();
+        const lower = textNorm(rawText);
+        const sportKey = detectSport(lower) || (user && user.sport && DATA[user.sport] ? user.sport : "futbol");
+        const age = detectAge(lower) || (user && user.age) || "joven";
+        return { user, sportKey, age, lower };
+      }
+
+      function getAnswer(raw) {
+        const ctx = ctxFromMessage(raw);
+        const q = ctx.lower;
+
+        if (!q || q.trim().length === 0) return "Escríbeme una pregunta y te ayudo 😊";
+
+        if (/\b(hola|buenas|hey|buenos dias|buenas tardes|buenas noches)\b/.test(q)) {
+          const name = ctx.user ? ` ${ctx.user.username}` : "";
+          return `¡Hola${name}! 👋 ¿Sobre qué deporte quieres que hablemos? Puedo darte rutinas, tiempos, estiramientos y dieta.`;
+        }
+
+        if (/\b(gracias|genial|perfecto|vale)\b/.test(q)) {
+          return "¡A ti! 💪 Recuerda: calentar bien y estirar al final es la mitad del entrenamiento.";
+        }
+
+        if (/(quien eres|que eres|que sabes hacer|ayuda|como funcionas)/.test(q)) {
+          return "Soy el Coach IA de Fadex. Puedo explicarte:\n• La rutina semanal de un deporte y grupo de edad\n• Qué comer cada día (dieta semanal)\n• Tiempos de calentamiento y estiramiento\n• Consejos para evitar lesiones\n\nDime tu deporte (fútbol, gimnasio, natación, tenis, baloncesto, karate o boxeo) y tu edad, y te oriento.";
+        }
+
+        if (/(cuantos dias|dias a la semana|frecuencia|semanas debo)/.test(q)) {
+          return daysAnswer(ctx);
+        }
+
+        if (/(rutina|entrenamiento|plan|calentamiento|ejercicios)/.test(q)) {
+          return routineAnswer(ctx);
+        }
+
+        if (/(dieta|comer|comida|menu|nutricion|alimentos|desayuno|cena|almuerzo|merienda|proteina)/.test(q)) {
+          return dietAnswer(ctx);
+        }
+
+        if (/(estiramiento|estirar|flexibil|movilidad)/.test(q)) {
+          return stretchAnswer(ctx);
+        }
+
+        if (/(lesion|dolor|molestia|esguince|tiron|contractura|evitar)/.test(q)) {
+          return injuryAnswer(ctx);
+        }
+
+        if (/(agua|hidrata|beber)/.test(q)) {
+          return "💧 Hidratación: 2–2,5 L al día en reposo; añade 0,5–1 L por hora de ejercicio. En sesiones largas (>60 min) usa bebidas con electrolitos. El 2% de deshidratación ya reduce el rendimiento.";
+        }
+        if (/(dormir|sueno|descanso|recuperar)/.test(q)) {
+          return "😴 Descanso: duerme 7–9 h (los más jóvenes hasta 9–10 h). El músculo crece y se repara mientras duermes; sin sueño, ni la mejor rutina funciona. Deja al menos 1 día completo de descanso a la semana.";
+        }
+        if (/(motiva|animo|flojera|pereza|abandonar)/.test(q)) {
+          return "🔥 Truco anti-pereza: comprométete solo con los 10 primeros minutos. El 90% de las veces acabarás la sesión completa. Y apunta tus sesiones: ver tu racha crecer motiva sola.";
+        }
+        if (/(perder peso|adelgazar|grasa|definir)/.test(q)) {
+          return "⚖️ Para perder grasa: déficit calórico suave (300–500 kcal/día), proteína en cada comida (1,6–2 g/kg) y mantener fuerza 2–3 días/semana. Las dietas de la web ya son equilibradas; reduce raciones de hidratos en cenas de días sin entreno.";
+        }
+        if (/(ganar musculo|masa muscular|hipertrofia|volumen)/.test(q)) {
+          return "📈 Para ganar músculo: sobrecarga progresiva (sube peso o repeticiones cada semana), 1,6–2 g de proteína/kg de peso, y duerme bien. Mira el plan de gimnasio 10–30 años: es un buen modelo para estructurar tus semanas.";
+        }
+        if (/(material|equipo|necesito)/.test(q)) {
+          return "🎒 Material: en gimnasio se asume acceso a pesas. En el resto de deportes: balón/raqueta/guantes según deporte, más una goma elástica y una cuerda, que cubren el 80% de los calentamientos.";
+        }
+
+        return fallbackAnswer(ctx);
+      }
+
+      function planOf(ctx) {
+        return DATA[ctx.sportKey].routine[ctx.age];
+      }
+
+      function daysAnswer(ctx) {
+        const plan = planOf(ctx);
+        return `Para ${sportName(ctx.sportKey)} en el grupo ${plan.label}, lo ideal son 5 días de actividad + 2 de recuperación:\n\n• 3 días principales (técnica/fuerza)\n• 1 día de intensidad\n• 1 día suave o partido\n• 2 días de descanso o paseo\n\nLa semana tipo de la web ya está montada así en la pestaña "Rutina semanal" de cada deporte.`;
+      }
+
+      function routineAnswer(ctx) {
+        const s = DATA[ctx.sportKey];
+        const plan = planOf(ctx);
+        const monday = plan.days[0];
+        const warm = monday.warmup.slice(0, 3).map((e) => `• ${e.n} (${e.t})`).join("\n");
+        return ` ${s.icon} ${s.name} — grupo ${plan.label}\nIntensidad: ${plan.intensity} · Sesión: ${plan.session}\n\nEjemplo (lunes — ${monday.focus}):\n${warm}\n\nEn la web tienes los 7 días completos con calentamiento y estiramientos. ¿Quieres que te cuente la dieta de este grupo? Pregúntame por "dieta".`;
+      }
+
+      function dietAnswer(ctx) {
+        const plan = planOf(ctx);
+        const d = plan.diet[0];
+        const meals = Object.entries(d.meals).map(([k, v]) => `• ${k}: ${v}`).join("\n");
+        return `🥗 Dieta ${plan.label} — ${d.day} (${sportName(ctx.sportKey)}):\n${meals}\n\nEn cada deporte tienes el menú completo de los 7 días. Base común: proteína magra en cada comida, hidratos según entrenes, fruta y verdura diarias, y grasa buena (AOVE, frutos secos).`;
+      }
+
+      function stretchAnswer(ctx) {
+        const plan = planOf(ctx);
+        const st = plan.days[0].stretches[0];
+        return `🧘 En ${sportName(ctx.sportKey)} (${plan.label}) te recomiendo terminar cada sesión con estiramientos estáticos de 25–40 s por músculo.\n\nEjemplo del lunes: ${st.n} — ${st.t}.\n\nReglas de oro: no rebotes, respira profundo, estira solo hasta tensión cómoda (no dolor) y nunca estires en frío antes de entrenar: primero calienta, estira después.`;
+      }
+
+      function injuryAnswer(ctx) {
+        return `🛡️ Para evitar lesiones en ${sportName(ctx.sportKey)}:\n\n1. Nunca saltes el calentamiento (10–15 min mínimo).\n2. Progresa cargas/distancias un 10% máximo por semana.\n3. Estira al terminar, no antes.\n4. Duerme e hidrátate: la recuperación es parte del entrenamiento.\n\n⚠️ Si ya tienes dolor agudo o molestia que dura más de 3–4 días, para y consulta a un fisioterapeuta o médico. Yo solo soy orientación general.`;
+      }
+
+      function fallbackAnswer(ctx) {
+        const plan = planOf(ctx);
+        return `Puedo ayudarte con eso y más 🙂. Sobre ${sportName(ctx.sportKey)} (${plan.label}) puedo contarte:\n\n• "dame la rutina" → semana completa con tiempos\n• "dieta" → menú de 7 días\n• "estiramientos" → cómo y cuánto\n• "evitar lesiones" → calentamiento y progresión\n\nPrueba con una de esas palabras clave 💪`;
+      }
+
+      quick.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const q = btn.dataset.q;
+          addMsg(q, "user");
+          botReply(q);
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        addMsg(text, "user");
+        input.value = "";
+        botReply(text);
+      });
+    })();
+  </script>
+</body>
+</html>
